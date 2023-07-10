@@ -32,7 +32,7 @@ const mysearch = function () {
     .then((data) => {
       // dtransform data in array
       let myData = data.data;
-
+      console.log(data);
       //   create a array for album and artist
       const resultAlbum = [];
       const resultArtist = [];
@@ -41,6 +41,25 @@ const mysearch = function () {
       myData.forEach((e) => {
         resultAlbum.push(e.album);
         resultArtist.push(e.artist);
+
+        containerSearchResult.innerHTML = `
+        <div class="row">
+        <div class="container">
+          <div class="col gap-3">
+            <div>
+              <img
+                id="artist-img"
+                class="rounded-circle"
+                src="${e.artist.picture}"
+                alt="${e.artist.name}"
+              />
+      
+              <span id="artist-name">${e.artist.name}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+        `;
       });
       console.log(resultAlbum);
 
@@ -56,6 +75,9 @@ const mysearch = function () {
         console.log(imageAlbumUrl);
         console.log(nameAlbum);
       });
+
+      console.log(resultAlbum);
+      console.log(resultArtist);
       hideDefault();
     })
 
