@@ -3,10 +3,6 @@
   color: white !important;
 }
 
-aside {
-  position: relative;
-  bottom: 0;
-}
 aside li {
   list-style-type: none;
 }
@@ -15,10 +11,22 @@ aside li:hover {
   color: white !important;
 }
 
-svg:hover {
+aside svg:hover {
   border: 1px solid white;
   background-color: gray;
   border-radius: 20px;
   color: white !important;
-  padding: 1px;
+  padding: 5px;
+}
+
+#rigth:hover, #left:hover {
+  color: white !important;
+}
+
+#play:hover {
+  transform: scale(1.1);
+}
+
+#casuale:hover {
+  color: green !important;
 }/*# sourceMappingURL=main-style.css.map */
