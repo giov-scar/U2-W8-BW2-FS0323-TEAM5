@@ -22,11 +22,17 @@
               <i class="bi bi-search"></i>
             </span>
             <input
+              id="search-input"
               type="text"
               class="form-control bg-dark text-white"
               placeholder="Cosa vuoi ascoltare?"
               style="color: white"
             />
+            <div class="p-2">
+              <button id="search-button" type="button" class="btn btn-primary">
+                Cerca
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -38,9 +44,6 @@
           <div class="d-flex flex-column">
             <div class="p-3">
               <button type="button" class="btn btn-primary">Home</button>
-            </div>
-            <div class="p-2">
-              <button type="button" class="btn btn-primary">Cerca</button>
             </div>
           </div>
           <div class="p-2">
@@ -62,6 +65,7 @@
         </div>
         <div class="col-lg-8" id="images-grid">
           <div
+            id="hidden"
             class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto"
           >
             <div class="col m-4">
@@ -703,5 +707,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+    <script src="./script/search-script.js"></script>
   </body>
 </html>
