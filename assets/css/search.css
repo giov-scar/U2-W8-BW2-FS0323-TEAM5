@@ -1,0 +1,101 @@
+#card1,
+#card8,
+#card17,
+#card25,
+#card33,
+#card39,
+#card48,
+#card52 {
+  background-color: orangered;
+  height: 14vh;
+  width: 14vh;
+}
+
+#card2,
+#card6,
+#card19,
+#card29,
+#card34,
+#card42,
+#card49,
+#card51 {
+  background-color: rgb(186, 62, 240);
+  height: 14vh;
+  width: 14vh;
+}
+
+#card3,
+#card7,
+#card14,
+#card20,
+#card28,
+#card34,
+#card43,
+#card49 {
+  background-color: rgb(32, 46, 246);
+  height: 14vh;
+  width: 14vh;
+}
+
+#card4,
+#card9,
+#card13,
+#card16,
+#card22,
+#card27,
+#card32,
+#card36,
+#card41 {
+  background-color: rgb(57, 136, 14);
+  height: 14vh;
+  width: 14vh;
+}
+
+#card5,
+#card10,
+#card15,
+#card21,
+#card30,
+#card38,
+#card47,
+#card50 {
+  background-color: rgb(235, 10, 10);
+  height: 14vh;
+  width: 14vh;
+}
+
+#card11,
+#card18,
+#card23,
+#card31,
+#card35,
+#card39,
+#card43,
+#card50 {
+  background-color: rgb(164, 155, 155);
+  height: 14vh;
+  width: 14vh;
+}
+
+#card12,
+#card24,
+#card26,
+#card37,
+#card40,
+#card44,
+#card45,
+#card46 {
+  background-color: rgb(251, 218, 1);
+  height: 14vh;
+  width: 14vh;
+}
+
+#images-grid img {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  padding: 0;
+  bottom: 0;
+  right: 0;
+  transform: rotate(25deg);
+}
