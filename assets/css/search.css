@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 #card1,
 #card8,
 #card17,
@@ -98,4 +102,8 @@
   bottom: 0;
   right: 0;
   transform: rotate(25deg);
+}
+
+a {
+  text-decoration: none;
 }
