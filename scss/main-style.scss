@@ -1,0 +1,40 @@
+#logo{
+width: 150px;
+color: white !important;
+}
+// #col{
+//     width: 120px;
+// }
+
+ aside 
+{
+    position: relative;
+    bottom: 0;
+
+       li{
+list-style-type: none;
+&:hover{
+    text-decoration: underline;
+    color: white !important;
+}
+} 
+}
+
+svg{
+    &:hover{
+        border: 1px solid white;
+        background-color: gray;
+        border-radius: 20px;
+        color: white !important;
+        padding: 1px;
+    }
+}
+
+
+
+
+// @media screen and (max-width:768px) {
+//     #col{
+//         width: 90px !important;
+//     }
+// }
