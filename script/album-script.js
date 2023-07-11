@@ -22,7 +22,57 @@ if (albumId) {
       let tracklist = data.tracks.data;
       console.log(data);
       console.log("url tracklist", tracklist);
+      // add album img and detail
+      let albumImg = data.cover_medium;
 
+      const imgContainer = document.getElementById("album-img-container");
+      const img = document.getElementById("img");
+      img.classList.add("d-none");
+      imgContainer.innerHTML = `
+      <img src="${albumImg}" alt="Album Cover">
+      `;
+
+      let albumTitle = data.title;
+      let artistImg = data.artist.picture_small;
+      let artistName = data.artist.name;
+      let year = data.release_date.substring(0, 4);
+      let numberTracks = tracklist.length;
+
+      const duration = data.duration;
+
+      //   transform second in hours, minutes and seconds
+      let date = new Date(null);
+      date.setSeconds(duration);
+      let hours = date.toISOString().substr(12, 1);
+      console.log(hours);
+      let minutes = date.toISOString().substr(14, 2);
+      console.log(minutes);
+      let seconds = date.toISOString().substr(17, 2);
+      console.log(seconds);
+
+      const albumInformationContainer =
+        document.getElementById("album-information");
+      console.log(albumInformationContainer);
+      const arrayInformation = Array.from(albumInformationContainer.children);
+      arrayInformation.forEach((e) => {
+        e.classList.add("d-none");
+      });
+
+      albumInformationContainer.innerHTML = `
+                <h5 id="album-title" class="text-white">${albumTitle}</h5>
+            
+              <img
+                src=${artistImg}
+                alt="artist-photo"
+                class="rounded-circle mb-3"
+              />
+              <span class="text-white mx-3">${artistName}</span>
+              <p class="text-white">
+               ${year} &centerdot; ${numberTracks} brani, circa ${hours} ora ${minutes} min
+              </p>
+`;
+
+      //   add album track in html
       let index = 1;
       const trackContainer = document.getElementById("track-container");
       const placeholdertrack = document.getElementById("placeholder-track");
@@ -77,6 +127,7 @@ if (albumId) {
         index += 1;
       });
 
+      // add play pause function on all tracks
       let allTracks = document.querySelectorAll(".play");
 
       allTracks.forEach((track) => {
@@ -95,7 +146,7 @@ if (albumId) {
     });
 }
 
-//DATA 
-let now= new Date().getFullYear()
-let data= document.getElementById("copy")
-data.innerText=  now 
+//DATA
+let now = new Date().getFullYear();
+let data = document.getElementById("copy");
+data.innerText = now;
