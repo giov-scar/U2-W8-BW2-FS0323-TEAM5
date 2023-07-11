@@ -114,7 +114,10 @@
       <main>
         <div class="container-fluid">
           <div class="row" id="mediumBg">
-            <div class="col col-12 d-flex flex-row justify-content-center my-4">
+            <div
+              id="album-img-container"
+              class="col col-12 d-flex flex-row justify-content-center my-4"
+            >
               <!--  ALBUM IMAGE -->
               <img
                 src="assets/imgs/search/image-1.jpeg"
@@ -123,11 +126,14 @@
               />
             </div>
 
-            <div class="col col-10 ps-5">
+            <div id="album-information" class="col col-10 ps-5">
               <!--  ALBUM INFORMATION  -->
-              <h5 class="text-white">Discover Weekly</h5>
-              <p class="text-white">A playlist made by</p>
+              <h5 id="album-title" class="text-white">Discover Weekly</h5>
+              <p id="album-description" class="text-white">
+                A playlist made by
+              </p>
               <img
+                id="logo-placeholder"
                 src="https://i.scdn.co/image/ab67757000003b8255c25988a6ac314394d3fbf5"
                 alt="Spotify logo"
                 width="24px"
