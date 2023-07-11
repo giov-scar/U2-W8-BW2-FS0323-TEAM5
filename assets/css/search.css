@@ -4,7 +4,7 @@ body {
 
 #search-input {
   border-radius: 40px;
-  padding: 20px 40px;
+  padding: 20px 30px;
   border: none;
 }
 
@@ -32,15 +32,28 @@ body {
   opacity: 0.5;
 }
 
+.buttons-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .buttons-search button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  font-size: 2em;
+  font-size: 1.5em;
   background-color: black;
-  color: white;
   border: none;
   text-align: center;
+  opacity: 0.5;
+}
+
+#sub-title {
+  color: white;
 }
 
 #card1,

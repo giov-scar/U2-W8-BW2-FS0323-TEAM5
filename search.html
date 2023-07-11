@@ -11,6 +11,10 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/search.css" />
   </head>
 
@@ -25,6 +29,11 @@
                 height="1em"
                 viewBox="0 0 320 512"
               >
+                <style>
+                  svg {
+                    fill: #ffffff;
+                  }
+                </style>
                 <path
                   d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
                 />
@@ -50,10 +59,10 @@
             </button>
           </div>
 
-          <form class="input-group">
+          <form class="input-group ms-3">
             <input
               id="search-input"
-              type="text"
+              type="search"
               class="form-control bg-dark text-white"
               placeholder=" Cosa vuoi ascoltare?"
             />
@@ -66,15 +75,21 @@
         </div>
       </div>
     </div>
-
     <div>
-      <div class="row bg-dark container-fluid">
-        <div class="col-lg-12" id="images-grid">
+      <div id="sub-title">
+        <h2 class="my-4">Ascolta i tuoi contenuti preferiti</h2>
+        <p>Cerca artisti, brani, podcast, audiolibri e altro.</p>
+        <h2 class="my-5">Sfoglia tutto</h2>
+      </div>
+    </div>
+    <div>
+      <div class="bg-dark container-fluid">
+        <div id="images-grid">
           <div
             id="hidden"
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto"
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto justify-content-center g-3"
           >
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ"
                 ><div class="card overflow-hidden" id="card1">
                   <div class="card-body text-white">
@@ -90,7 +105,7 @@
               ></a>
             </div>
 
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card2">
                   <div class="card-body text-white">
@@ -104,7 +119,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card3">
                   <div class="card-body text-white">
@@ -118,7 +133,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card4">
                   <div class="card-body text-white">
@@ -132,7 +147,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card5">
                   <div class="card-body text-white">
@@ -146,7 +161,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card6">
                   <div class="card-body text-white">
@@ -160,7 +175,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card7">
                   <div class="card-body text-white">
@@ -174,7 +189,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card8">
                   <div class="card-body text-white">
@@ -188,7 +203,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card9">
                   <div class="card-body text-white">
@@ -202,7 +217,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card10">
                   <div class="card-body text-white">
@@ -216,7 +231,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card11">
                   <div class="card-body text-white">
@@ -231,7 +246,7 @@
               ></a>
             </div>
 
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card12">
                   <div class="card-body text-white">
@@ -245,7 +260,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card13">
                   <div class="card-body text-white">
@@ -259,7 +274,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card14">
                   <div class="card-body text-white">
@@ -273,7 +288,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card15">
                   <div class="card-body text-white">
@@ -287,7 +302,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card16">
                   <div class="card-body text-white">
@@ -301,7 +316,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card17">
                   <div class="card-body text-white">
@@ -315,7 +330,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card18">
                   <div class="card-body text-white">
@@ -329,7 +344,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card19">
                   <div class="card-body text-white">
@@ -343,7 +358,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card20">
                   <div class="card-body text-white">
@@ -357,7 +372,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card21">
                   <div class="card-body text-white">
@@ -372,7 +387,7 @@
               ></a>
             </div>
 
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card22">
                   <div class="card-body text-white">
@@ -386,7 +401,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card23">
                   <div class="card-body text-white">
@@ -400,7 +415,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card24">
                   <div class="card-body text-white">
@@ -414,7 +429,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card25">
                   <div class="card-body text-white">
@@ -428,7 +443,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card26">
                   <div class="card-body text-white">
@@ -442,7 +457,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card27">
                   <div class="card-body text-white">
@@ -456,7 +471,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card28">
                   <div class="card-body text-white">
@@ -470,7 +485,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card29">
                   <div class="card-body text-white">
@@ -484,7 +499,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card30">
                   <div class="card-body text-white">
@@ -498,7 +513,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card31">
                   <div class="card-body text-white">
@@ -513,7 +528,7 @@
               ></a>
             </div>
 
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card32">
                   <div class="card-body text-white">
@@ -527,7 +542,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card33">
                   <div class="card-body text-white">
@@ -541,7 +556,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card34">
                   <div class="card-body text-white">
@@ -555,7 +570,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card35">
                   <div class="card-body text-white">
@@ -569,7 +584,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card36">
                   <div class="card-body text-white">
@@ -583,7 +598,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card37">
                   <div class="card-body text-white">
@@ -597,7 +612,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card38">
                   <div class="card-body text-white">
@@ -611,7 +626,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card39">
                   <div class="card-body text-white">
@@ -625,7 +640,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card40">
                   <div class="card-body text-white">
@@ -639,7 +654,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card41">
                   <div class="card-body text-white">
@@ -654,7 +669,7 @@
               ></a>
             </div>
 
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card42">
                   <div class="card-body text-white">
@@ -668,7 +683,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card43">
                   <div class="card-body text-white">
@@ -682,7 +697,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card44">
                   <div class="card-body text-white">
@@ -696,7 +711,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card45">
                   <div class="card-body text-white">
@@ -710,7 +725,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card46">
                   <div class="card-body text-white">
@@ -724,7 +739,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card47">
                   <div class="card-body text-white">
@@ -738,7 +753,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card48">
                   <div class="card-body text-white">
@@ -752,7 +767,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card49">
                   <div class="card-body text-white">
@@ -766,7 +781,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card50">
                   <div class="card-body text-white">
@@ -780,7 +795,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card51">
                   <div class="card-body text-white">
@@ -794,7 +809,7 @@
                   /></div
               ></a>
             </div>
-            <div class="col mx-1 my-3">
+            <div class="col">
               <a href="https://youtu.be/dQw4w9WgXcQ">
                 <div class="card overflow-hidden" id="card52">
                   <div class="card-body text-white">
