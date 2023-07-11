@@ -38,7 +38,7 @@ body {
   align-items: center;
 }
 
-.buttons-search button {
+.buttons-search a {
   display: flex;
   justify-content: center;
   align-items: center;
