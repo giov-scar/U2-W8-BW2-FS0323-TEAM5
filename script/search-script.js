@@ -78,26 +78,45 @@ const mysearch = function () {
         let nameArtist = e.name;
       });
       resultAlbum.forEach((e) => {
-        let imageAlbumUrl = e.cover_big;
+        let imageAlbumUrl = e.cover_medium;
         let nameAlbum = e.title;
         let albumId = e.id;
         const albumResultContainer = document.getElementById("album-result");
         let newAlbum = document.createElement("div");
-        newAlbum.classList.add("col");
+        newAlbum.classList.add("col-12","col-md-4", "col-lg-3", "col-xl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
-          <div class="col">
+          <div class="col d-none d-md-block">
             <div class="card">
-              <img src="${imageAlbumUrl}" class="card-img-top" alt="${nameAlbum}" />
-              <div class="card-body">
+              <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}" />
+              <div class="card-body ">
                 <h5 class="card-title">${nameAlbum}</h5>
               </div>
             </div>
           </div>
         </div>
+        
+        <div class="card mb-3 d-md-none bg-secondary">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="${imageAlbumUrl}" class="img-fluid rounded-start" width="100px" alt="${nameAlbum}">
+              <h5 class="card-title d-inline">${nameAlbum}</h5>
+    </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+          
+        </div>
+      </div>
         </a>
         `;
+
+        
         albumResultContainer.appendChild(newAlbum);
       });
 
