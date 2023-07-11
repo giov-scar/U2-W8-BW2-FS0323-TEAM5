@@ -29,3 +29,8 @@ if (albumId) {
       console.log(err);
     });
 }
+
+//DATA 
+let now= new Date().getFullYear()
+let data= document.getElementById("copy")
+data.innerText=  now 
