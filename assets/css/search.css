@@ -107,3 +107,9 @@ body {
 a {
   text-decoration: none;
 }
+
+#images-grid #artist-img {
+  position: relative;
+  width: 50px;
+  transform: rotate(0deg);
+}

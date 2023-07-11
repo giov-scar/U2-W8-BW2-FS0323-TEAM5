@@ -54,15 +54,23 @@ const mysearch = function () {
                 alt="${e.artist.name}"
               />
       
-              <span id="artist-name">${e.artist.name}</span>
+              <span id="artist-name" class='text-white'>${e.artist.name}</span>
             </div>
           </div>
         </div>
       </div>
+      <div class="container-fluid">
+        <div id="album-result" class="row">
+        </div>
+      </div>
+
         `;
+        localStorage.clear();
+        localStorage.setItem("artist-img", e.artist.picture);
+        localStorage.setItem("artist-name", e.artist.name);
       });
       console.log(resultAlbum);
-
+      console.log(resultArtist);
       searchInput.value = "";
 
       resultArtist.forEach((e) => {
@@ -72,8 +80,25 @@ const mysearch = function () {
       resultAlbum.forEach((e) => {
         let imageAlbumUrl = e.cover_big;
         let nameAlbum = e.title;
-        console.log(imageAlbumUrl);
-        console.log(nameAlbum);
+        let albumId = e.id;
+        const albumResultContainer = document.getElementById("album-result");
+        let newAlbum = document.createElement("div");
+        newAlbum.classList.add("col");
+        newAlbum.innerHTML = `
+        <a href="./album.html?id=${albumId}">
+        <div id="album-result" class="row">
+          <div class="col">
+            <div class="card">
+              <img src="${imageAlbumUrl}" class="card-img-top" alt="${nameAlbum}" />
+              <div class="card-body">
+                <h5 class="card-title">${nameAlbum}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+        `;
+        albumResultContainer.appendChild(newAlbum);
       });
 
       console.log(resultAlbum);
