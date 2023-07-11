@@ -11,6 +11,10 @@ aside li:hover {
   color: white !important;
 }
 
+nav a {
+  text-decoration: none;
+}
+
 aside svg:hover {
   border: 1px solid white;
   background-color: gray;
@@ -19,14 +23,14 @@ aside svg:hover {
   padding: 5px;
 }
 
-#rigth:hover, #left:hover {
-  color: white !important;
-}
-
 #play:hover {
   transform: scale(1.1);
 }
 
-#casuale:hover {
+#casuale:hover, #heart:hover {
   color: green !important;
+}
+
+#focus {
+  margin-top: 70px !important;
 }/*# sourceMappingURL=main-style.css.map */

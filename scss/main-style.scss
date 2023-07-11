@@ -8,8 +8,6 @@ color: white !important;
 
  aside 
 {
-   
-
        li{
 list-style-type: none;
 &:hover{
@@ -18,7 +16,10 @@ list-style-type: none;
 }
 } 
 }
-
+nav a{
+    text-decoration: none;
+}
+//icone aside
  aside svg{
     &:hover{
         border: 1px solid white;
@@ -28,23 +29,22 @@ list-style-type: none;
         padding: 5px;
     }
 }
-   #rigth, #left{
-&:hover{
-color: white !important;
-}
- }
  
+//  icone play
  #play{
     &:hover{
 transform: scale(1.1);
     }
      }
-#casuale{
+#casuale, #heart{
     &:hover{
         color: green!important;
+     
     }
 }
-
+#focus{
+    margin-top: 70px!important;
+}
 
 // @media screen and (max-width:768px) {
 //     #col{
