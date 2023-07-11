@@ -33,4 +33,9 @@ aside svg:hover {
 
 #focus {
   margin-top: 70px !important;
+}
+
+html {
+  width: 100%;
+  height: 100%;
 }/*# sourceMappingURL=main-style.css.map */

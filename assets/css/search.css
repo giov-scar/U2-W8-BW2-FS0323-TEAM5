@@ -1,5 +1,46 @@
 body {
+  background-color: rgb(18, 18, 18);
+}
+
+#search-input {
+  border-radius: 40px;
+  padding: 20px 40px;
+  border: none;
+}
+
+#search-input:hover {
+  border: 1px solid #ced4da;
+}
+
+#search-input:focus {
+  outline: none;
+  border: 2px solid white;
+}
+
+#search-input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+#search-input:-ms-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+#search-input::-ms-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.buttons-search button {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 2em;
   background-color: black;
+  color: white;
+  border: none;
+  text-align: center;
 }
 
 #card1,
