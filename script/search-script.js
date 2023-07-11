@@ -103,14 +103,10 @@ const mysearch = function () {
       <img src="${imageAlbumUrl}" class="img-fluid rounded-start" width="100px" alt="${nameAlbum}">
               <h5 class="card-title d-inline">${nameAlbum}</h5>
     </div>
-
-
-
       </div>
     </div>
   </div>
 </div>
-          
         </div>
       </div>
         </a>
