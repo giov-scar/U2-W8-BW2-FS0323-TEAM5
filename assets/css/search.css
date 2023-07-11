@@ -94,7 +94,7 @@ body {
   width: 14vh;
 }
 
-#images-grid img {
+#card-imgs {
   width: 50%;
   height: auto;
   position: absolute;
