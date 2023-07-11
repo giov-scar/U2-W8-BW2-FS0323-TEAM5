@@ -50,13 +50,16 @@ if (albumId) {
       let seconds = date.toISOString().substr(17, 2);
       console.log(seconds);
 
+      //   selected album container
       const albumInformationContainer =
         document.getElementById("album-information");
       console.log(albumInformationContainer);
       const arrayInformation = Array.from(albumInformationContainer.children);
+      //   delete all placeholder
       arrayInformation.forEach((e) => {
         e.classList.add("d-none");
       });
+      // create a dynamic html to API
 
       albumInformationContainer.innerHTML = `
                 <h5 id="album-title" class="text-white">${albumTitle}</h5>
@@ -129,14 +132,29 @@ if (albumId) {
 
       // add play pause function on all tracks
       let allTracks = document.querySelectorAll(".play");
+      const mainPlayButton = document.getElementById("play");
 
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
           let audio = this.querySelector("#audio");
           if (audio.paused) {
             audio.play();
+            mainPlayButton.addEventListener("click", () => {
+              if (audio.paused) {
+                audio.play();
+              } else {
+                audio.pause();
+              }
+            });
           } else {
             audio.pause();
+            mainPlayButton.addEventListener("click", () => {
+              if (audio.paused) {
+                audio.play();
+              } else {
+                audio.pause();
+              }
+            });
           }
         });
       });
