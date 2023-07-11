@@ -41,41 +41,58 @@ const mysearch = function () {
       myData.forEach((e) => {
         resultAlbum.push(e.album);
         resultArtist.push(e.artist);
-
         containerSearchResult.innerHTML = `
-        <div class="row">
         <div class="container">
-          <div class="col gap-3">
-            <div>
-              <img
-                id="artist-img"
-                class="rounded-circle"
-                src="${e.artist.picture}"
-                alt="${e.artist.name}"
-              />
-      
-              <span id="artist-name" class='text-white'>${e.artist.name}</span>
-            </div>
-          </div>
+        <div id='artist-container' class="row">
+          
         </div>
       </div>
       <div class="container-fluid">
         <div id="album-result" class="row">
         </div>
       </div>
-
-        `;
-        localStorage.clear();
-        localStorage.setItem("artist-img", e.artist.picture);
-        localStorage.setItem("artist-name", e.artist.name);
+      `;
       });
+
       console.log(resultAlbum);
       console.log(resultArtist);
       searchInput.value = "";
 
-      resultArtist.forEach((e) => {
+      // function for retun unique value of array by key value
+      function getUniqueListBy(arr, key) {
+        return [...new Map(arr.map((item) => [item[key], item])).values()];
+      }
+
+      const uniqueArtist = getUniqueListBy(resultArtist, "id");
+      console.log(uniqueArtist);
+
+      uniqueArtist.forEach((e) => {
         let imageArtistUrl = e.picture;
         let nameArtist = e.name;
+        let artistid=e.id
+        console.log(artistid);
+        console.log(e);
+        const artistContainer = document.getElementById("artist-container");
+let newCol =document.createElement ('div')
+newCol.classList.add ('col')
+
+        newCol.innerHTML = 
+          `<a href="./artist.html?id=${artistid}">
+            <div>
+              <img
+                id="artist-img"
+                class="rounded-circle"
+                src="${imageArtistUrl}"
+                alt="${nameArtist}"
+              />
+              <span id="artist-name" class='text-white'>${nameArtist}</span>
+            </div>
+            </a>
+         `;
+         artistContainer.appendChild(newCol)
+        localStorage.clear();
+        localStorage.setItem("artist-img", imageArtistUrl);
+        localStorage.setItem("artist-name", nameArtist);
       });
       resultAlbum.forEach((e) => {
         let imageAlbumUrl = e.cover_big;
