@@ -56,3 +56,133 @@ html{
 //         width: 90px !important;
 //     }
 // }
+
+
+main{
+    background-color: black;
+}
+
+
+ /* HEART ANIMATION --------------------------------------------------------------------------------------------- */
+
+ * {
+    box-sizing: border-box;
+  }
+  
+  
+  svg {
+    height: 35px;
+    overflow: visible;
+    cursor: pointer;
+  }
+  
+  label {
+    transform: translateX(-25px);
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  input[type="checkbox"] + label {
+    width: 25px;
+    // height: 250px;
+    position: relative;
+    // display: grid;
+    // place-content: center;
+    #center-heart {
+      #inner {
+        fill: transparent;
+        transition: 0.2s ease;
+      }
+      #outer {
+        fill: grey;
+        transition: 0.2s ease;
+      }
+    }
+    #left-hearts > *,
+    #right-hearts > * {
+      opacity: 0;
+      transition: 0.2s ease;
+    }
+  }
+  
+  input[type="checkbox"]:checked + label {
+    cursor: pointer;
+    // &::before,
+    // &::after {
+    //   content: "";
+    //   display: flex;
+    //   border-radius: 100%;
+    //   position: absolute;
+    //   outline: 5px solid #64d26d;
+    //   height: 30px;
+    //   width: 30px;
+    //   animation: scalePulse 0.5s cubic-bezier(0.12, 0.84, 0.5, 0.44) forwards;
+    // }
+    &::after {
+      opacity: 1;
+      transform: scale(0);
+      animation-delay: 0.2s;
+    }
+    #center-heart {
+      #inner {
+        fill: #1DB954;
+      }
+      #outer {
+        fill: #1DB954;
+      }
+    }
+    #left-hearts > *,
+    #right-hearts > * {
+      transform-origin: center center;
+      animation: floatingHearts 0.65s cubic-bezier(0.12, 0.84, 0.5, 0.44) forwards;
+    }
+    #right-hearts {
+      g:first-child {
+        animation-delay: 0.3s;
+      }
+      g:last-child {
+        animation-delay: 0.1s;
+      }
+    }
+    #left-hearts {
+      g:first-child {
+        animation-delay: 0.2s;
+      }
+      g:last-child {
+        animation-delay: 0.5s;
+      }
+    }
+  }
+  
+  @keyframes floatingHearts {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  
+    50% {
+      opacity: 0.5;
+    }
+  
+    100% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+//   @keyframes scalePulse {
+//     from {
+//       transform: scale(0);
+      
+//     }
+  
+//     to {
+//       transform: scale(1.1);
+//       opacity: 0;
+      
+//     }
+//   }
+  
+  
+  
