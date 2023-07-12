@@ -231,4 +231,21 @@ a {
     padding: 20px 30px;
     border: none;
   }
+
+  #search-button-container {
+    display: none;
+  }
+}
+
+#search-button {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  border: none;
+  text-align: center;
+  opacity: 0.5;
 }
