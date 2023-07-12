@@ -31,10 +31,6 @@ aside svg:hover {
   color: green !important;
 }
 
-#focus {
-  margin-top: 70px !important;
-}
-
 html {
   width: 100%;
   height: 100%;
@@ -127,5 +123,4 @@ input[type=checkbox]:checked + label #left-hearts g:last-child {
   }
 #bar {
   margin-top: 100px;
-}
-# sourceMappingURL=main-style.css.map
+}/*# sourceMappingURL=main-style.css.map */

@@ -1,0 +1,41 @@
+#logo {
+  width: 150px;
+  color: white !important;
+}
+
+aside li {
+  list-style-type: none;
+}
+aside li:hover {
+  text-decoration: underline;
+  color: white !important;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+aside svg:hover {
+  border: 1px solid white;
+  background-color: gray;
+  border-radius: 20px;
+  color: white !important;
+  padding: 5px;
+}
+
+#play:hover {
+  transform: scale(1.1);
+}
+
+#casuale:hover, #heart:hover {
+  color: green !important;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+#bar {
+  margin-top: 100px;
+}/*# sourceMappingURL=main.css.map */
