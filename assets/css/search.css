@@ -175,7 +175,7 @@ a {
   transform: rotate(0deg);
 }
 
-.col {
+#card-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -202,7 +202,7 @@ a {
     display: block;
   }
 
-  .col .card {
+  #card-col .card {
     height: 14vh !important;
     width: 14vh !important;
   }
