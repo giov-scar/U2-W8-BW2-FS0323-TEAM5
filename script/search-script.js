@@ -102,7 +102,7 @@ const mysearch = function () {
         newAlbum.classList.add("col-12", "col-md-4", "col-lg-3", "col-xl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
-        <div id="album-result" class="row">
+        <div id="album" class="row">
           <div class="col d-none d-md-block">
             <div class="card">
               <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}" />

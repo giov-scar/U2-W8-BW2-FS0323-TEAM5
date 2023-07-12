@@ -129,6 +129,9 @@ if (albumId) {
         trackContainer.appendChild(newTrack);
         index += 1;
       });
+
+      const fixedPalyer = document.getElementById("album");
+
       let audioSelected;
       // add play pause function on all tracks
       let allTracks = document.querySelectorAll(".play");
