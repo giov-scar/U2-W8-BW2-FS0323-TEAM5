@@ -3,9 +3,12 @@ body {
 }
 
 #search-input {
-  border-radius: 40px;
+  border-radius: 10px;
   padding: 20px 30px;
   border: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 100%;
 }
 
 #search-input:hover {
@@ -51,7 +54,7 @@ body {
 }
 
 #sub-title {
-  color: white;
+  display: none;
 }
 
 #card1,
@@ -184,6 +187,16 @@ a {
   display: none;
 }
 
+#cerca {
+  display: block;
+  color: white;
+  margin-top: 100px;
+}
+
+#sfoglia {
+  text-align: center;
+}
+
 @media screen and (min-width: 767px) {
   #card-imgs {
     display: block;
@@ -198,5 +211,24 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  #cerca {
+    display: none;
+  }
+
+  #sub-title {
+    display: block;
+    color: white;
+  }
+
+  #sfoglia {
+    text-align: start;
+  }
+
+  #search-input {
+    border-radius: 40px;
+    padding: 20px 30px;
+    border: none;
   }
 }
