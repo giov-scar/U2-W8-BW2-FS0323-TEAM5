@@ -3,9 +3,12 @@ body {
 }
 
 #search-input {
-  border-radius: 40px;
+  border-radius: 10px;
   padding: 20px 30px;
   border: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 100%;
 }
 
 #search-input:hover {
@@ -32,10 +35,8 @@ body {
   opacity: 0.5;
 }
 
-.buttons-search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#buttons-search-container {
+  display: none;
 }
 
 .buttons-search a {
@@ -53,7 +54,7 @@ body {
 }
 
 #sub-title {
-  color: white;
+  display: none;
 }
 
 #card1,
@@ -65,8 +66,9 @@ body {
 #card48,
 #card52 {
   background-color: orangered;
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card2,
@@ -78,8 +80,9 @@ body {
 #card49,
 #card51 {
   background-color: rgb(186, 62, 240);
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card3,
@@ -91,8 +94,9 @@ body {
 #card43,
 #card49 {
   background-color: rgb(32, 46, 246);
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card4,
@@ -105,8 +109,9 @@ body {
 #card36,
 #card41 {
   background-color: rgb(57, 136, 14);
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card5,
@@ -118,8 +123,9 @@ body {
 #card47,
 #card50 {
   background-color: rgb(235, 10, 10);
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card11,
@@ -132,7 +138,7 @@ body {
 #card50 {
   background-color: rgb(164, 155, 155);
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card12,
@@ -144,12 +150,13 @@ body {
 #card45,
 #card46 {
   background-color: rgb(251, 218, 1);
+
   height: 14vh;
-  width: 14vh;
+  width: 17rem;
 }
 
 #card-imgs {
-  width: 50%;
+  width: 30%;
   height: auto;
   position: absolute;
   padding: 0;
@@ -166,4 +173,62 @@ a {
   position: relative;
   width: 50px;
   transform: rotate(0deg);
+}
+
+#card-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#card-imgs {
+  display: none;
+}
+
+#cerca {
+  display: block;
+  color: white;
+  margin-top: 100px;
+}
+
+#sfoglia {
+  text-align: center;
+}
+
+@media screen and (min-width: 767px) {
+  #card-imgs {
+    display: block;
+  }
+
+  #card-col .card {
+    height: 14vh !important;
+    width: 14vh !important;
+  }
+
+  #buttons-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #cerca {
+    display: none;
+  }
+
+  #sub-title {
+    display: block;
+    color: white;
+  }
+
+  #sfoglia {
+    text-align: start;
+  }
+
+  #search-input {
+    border-radius: 40px;
+    padding: 20px 30px;
+    border: none;
+  }
 }
