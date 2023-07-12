@@ -10,6 +10,7 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="assets/css/search.css" />
     <link rel="stylesheet" href="assets/css/main-style.css" />
   </head>
   <body class="bg-black text-light h-100">
@@ -168,13 +169,14 @@
               </svg>
               Home
             </p>
-            <a href="search.html" class="text-light text-decoration-none">
+            <p class="text-light text-decoration-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
                 class="bi bi-search"
+                id="search"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -182,7 +184,7 @@
                 />
               </svg>
               Cerca
-            </a>
+            </p>
           </div>
           <div class="text-ligth bg-dark rounded-3 h-100 mt-1">
             <div class="d-flex justify-content-beetween w-100 m-3">
@@ -211,6 +213,7 @@
         </div>
         <div
           class="col-md-9 bg-dark h-100 rounded-3 d-flex flex-column justify-content-between"
+          id="cerca"
         >
           <main class="rounded-3">
             <section Id="focus" class="m-3">
