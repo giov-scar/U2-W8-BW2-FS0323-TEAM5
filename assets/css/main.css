@@ -38,4 +38,91 @@ html {
 
 #bar {
   margin-top: 100px;
+}
+
+main {
+  background-color: black;
+}
+
+/* HEART ANIMATION --------------------------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+svg {
+  height: 35px;
+  overflow: visible;
+  cursor: pointer;
+}
+
+label {
+  transform: translateX(-25px);
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label {
+  width: 25px;
+  position: relative;
+}
+input[type=checkbox] + label #center-heart #inner {
+  fill: transparent;
+  transition: 0.2s ease;
+}
+input[type=checkbox] + label #center-heart #outer {
+  fill: grey;
+  transition: 0.2s ease;
+}
+input[type=checkbox] + label #left-hearts > *,
+input[type=checkbox] + label #right-hearts > * {
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+input[type=checkbox]:checked + label {
+  cursor: pointer;
+}
+input[type=checkbox]:checked + label::after {
+  opacity: 1;
+  transform: scale(0);
+  animation-delay: 0.2s;
+}
+input[type=checkbox]:checked + label #center-heart #inner {
+  fill: #1DB954;
+}
+input[type=checkbox]:checked + label #center-heart #outer {
+  fill: #1DB954;
+}
+input[type=checkbox]:checked + label #left-hearts > *,
+input[type=checkbox]:checked + label #right-hearts > * {
+  transform-origin: center center;
+  animation: floatingHearts 0.65s cubic-bezier(0.12, 0.84, 0.5, 0.44) forwards;
+}
+input[type=checkbox]:checked + label #right-hearts g:first-child {
+  animation-delay: 0.3s;
+}
+input[type=checkbox]:checked + label #right-hearts g:last-child {
+  animation-delay: 0.1s;
+}
+input[type=checkbox]:checked + label #left-hearts g:first-child {
+  animation-delay: 0.2s;
+}
+input[type=checkbox]:checked + label #left-hearts g:last-child {
+  animation-delay: 0.5s;
+}
+
+@keyframes floatingHearts {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
 }/*# sourceMappingURL=main.css.map */
