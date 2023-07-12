@@ -69,15 +69,14 @@ const mysearch = function () {
       uniqueArtist.forEach((e) => {
         let imageArtistUrl = e.picture;
         let nameArtist = e.name;
-        let artistid=e.id
+        let artistid = e.id;
         console.log(artistid);
         console.log(e);
         const artistContainer = document.getElementById("artist-container");
-let newCol =document.createElement ('div')
-newCol.classList.add ('col')
+        let newCol = document.createElement("div");
+        newCol.classList.add("col");
 
-        newCol.innerHTML = 
-          `<a href="./artist.html?id=${artistid}">
+        newCol.innerHTML = `<a href="./artist.html?id=${artistid}">
             <div>
               <img
                 id="artist-img"
@@ -89,7 +88,7 @@ newCol.classList.add ('col')
             </div>
             </a>
          `;
-         artistContainer.appendChild(newCol)
+        artistContainer.appendChild(newCol);
         localStorage.clear();
         localStorage.setItem("artist-img", imageArtistUrl);
         localStorage.setItem("artist-name", nameArtist);
@@ -100,7 +99,7 @@ newCol.classList.add ('col')
         let albumId = e.id;
         const albumResultContainer = document.getElementById("album-result");
         let newAlbum = document.createElement("div");
-        newAlbum.classList.add("col-12","col-md-4", "col-lg-3", "col-xl-2");
+        newAlbum.classList.add("col-12", "col-md-4", "col-lg-3", "col-xl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
@@ -129,7 +128,6 @@ newCol.classList.add ('col')
         </a>
         `;
 
-        
         albumResultContainer.appendChild(newAlbum);
       });
 
