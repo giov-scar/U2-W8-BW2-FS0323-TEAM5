@@ -137,24 +137,15 @@ if (albumId) {
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
           let audio = this.querySelector("#audio");
+          const allAudio = document.querySelectorAll("audio");
           if (audio.paused) {
-            audio.play();
-            mainPlayButton.addEventListener("click", () => {
-              if (audio.paused) {
-                audio.play();
-              } else {
-                audio.pause();
-              }
+            allAudio.forEach((e) => {
+              e.pause();
+              e.currentTime = 0;
             });
+            audio.play();
           } else {
             audio.pause();
-            mainPlayButton.addEventListener("click", () => {
-              if (audio.paused) {
-                audio.play();
-              } else {
-                audio.pause();
-              }
-            });
           }
         });
       });
