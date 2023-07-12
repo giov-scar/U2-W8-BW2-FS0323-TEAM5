@@ -1,0 +1,63 @@
+#logo{
+width: 150px;
+color: white !important;
+}
+// #col{
+//     width: 120px;
+// }
+
+ aside 
+{
+       li{
+list-style-type: none;
+&:hover{
+    text-decoration: underline;
+    color: white !important;
+}
+} 
+}
+nav a{
+    text-decoration: none;
+} 
+
+//icone aside
+ aside svg{
+    &:hover{
+        border: 1px solid white;
+        background-color: gray;
+        border-radius: 20px;
+        color: white !important;
+        padding: 5px;
+    }
+}
+ 
+//  icone play
+ #play{
+    &:hover{
+transform: scale(1.1);
+    }
+     }
+#casuale, #heart{
+    &:hover{
+        color: green!important;
+     
+    }
+}
+// #focus{
+//     margin-top: 70px!important;
+// }
+
+html{
+    width: 100%;
+    height: 100%;
+}
+
+#bar{
+margin-top: 100px;
+}
+
+// @media screen and (max-width:768px) {
+//     #col{
+//         width: 90px !important;
+//     }
+// }
