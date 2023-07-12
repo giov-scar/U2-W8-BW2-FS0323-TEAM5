@@ -145,3 +145,8 @@ searchButton.addEventListener("click", function (e) {
   e.preventDefault();
   mysearch();
 });
+
+searchInput.addEventListener("keypress", function (e) {
+  e.preventDefault();
+  mysearch();
+});
