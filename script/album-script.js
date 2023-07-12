@@ -129,14 +129,14 @@ if (albumId) {
         trackContainer.appendChild(newTrack);
         index += 1;
       });
-
+      let audioSelected;
       // add play pause function on all tracks
       let allTracks = document.querySelectorAll(".play");
       const mainPlayButton = document.getElementById("play");
-
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
           let audio = this.querySelector("#audio");
+
           const allAudio = document.querySelectorAll("audio");
           if (audio.paused) {
             allAudio.forEach((e) => {
@@ -146,6 +146,16 @@ if (albumId) {
             audio.play();
           } else {
             audio.pause();
+          }
+          console.log(audioSelected);
+          return (audioSelected = audio);
+        });
+        mainPlayButton.addEventListener("click", () => {
+          if (audioSelected.paused) {
+            console.log(audioSelected);
+            audioSelected.play();
+          } else {
+            audioSelected.pause();
           }
         });
       });
