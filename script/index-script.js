@@ -940,7 +940,7 @@ newCol.classList.add ('col')
         let albumId = e.id;
         const albumResultContainer = document.getElementById("album-result");
         let newAlbum = document.createElement("div");
-        newAlbum.classList.add("col-12","col-md-4", "col-lg-3", "col-xl-2");
+        newAlbum.classList.add("col-12","col-md-4", "col-lg-4", "col-xl-3","col-xxl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
