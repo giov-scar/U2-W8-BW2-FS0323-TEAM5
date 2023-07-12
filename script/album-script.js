@@ -92,7 +92,7 @@ if (albumId) {
           "play"
         );
         newTrack.innerHTML = `
-        <div class='visually-hidden'>
+        <div class='d-none'>
         <audio
        id='audio'
         controls

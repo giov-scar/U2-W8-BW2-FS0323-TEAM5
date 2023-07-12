@@ -137,6 +137,19 @@ if (artistId) {
               "ps-5"
             );
             newCol.innerHTML = `
+            <div class='d-none'>
+        <audio
+       id='audio'
+        controls
+          src="${e.preview}"
+        >
+         
+        </audio>
+        </div>
+<div id='track-info' class='d-none'>
+<span id='img-album-url'>${e.album.cover_small}</span>
+
+        </div>
           <div class="col col-1" id="position">
             <p class="text-white align-middle">${index}</p>
           </div>
@@ -164,6 +177,60 @@ if (artistId) {
 `;
             index += 1;
             tracksContainer.appendChild(newCol);
+          });
+          const fixedPalyer = document.getElementById("album");
+
+          let audioSelected;
+          // add play pause function on all tracks
+
+          let allTracks = document.querySelectorAll(".play");
+          const mainPlayButton = document.getElementById("play");
+          const playBottom = document.getElementById("play-fixed");
+          console.log(mainPlayButton);
+          allTracks.forEach((track) => {
+            track.addEventListener("click", function () {
+              let albumImgUrl = this.querySelector("#img-album-url").innerText;
+              let title = this.querySelector("h6").innerText;
+              fixedPalyer.innerHTML = `
+                <div>
+               <img src="${albumImgUrl}" alt="album-img" srcset="">
+                </div>
+                <div>
+                <span class='text-white'>${title}</span>
+                </div>
+                <div id="bar"></div>
+                `;
+
+              let audio = this.querySelector("#audio");
+              const allAudio = document.querySelectorAll("audio");
+              if (audio.paused) {
+                allAudio.forEach((e) => {
+                  e.pause();
+                  e.currentTime = 0;
+                });
+                audio.play();
+              } else {
+                audio.pause();
+              }
+              console.log(audioSelected);
+              return (audioSelected = audio);
+            });
+          });
+          mainPlayButton.addEventListener("click", () => {
+            if (audioSelected.paused) {
+              console.log(audioSelected);
+              audioSelected.play();
+            } else {
+              audioSelected.pause();
+            }
+          });
+          playBottom.addEventListener("click", () => {
+            if (audioSelected.paused) {
+              console.log(audioSelected);
+              audioSelected.play();
+            } else {
+              audioSelected.pause();
+            }
           });
         });
     });
