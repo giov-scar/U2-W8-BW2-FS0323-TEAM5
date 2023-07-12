@@ -14,7 +14,7 @@ data.innerText= now
 
 // let minWidth = window.innerWidth
 // console.log(minWidth)
-// if(minWidth<=768){
+//  if(minWidth>=768){
     let searchButton1= document.getElementById("search")
     searchButton1.addEventListener("click", function(){
     let container= document.getElementById("cerca")
@@ -32,6 +32,7 @@ data.innerText= now
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 320 512"
+              id="arrow"
             >
               <style>
                 svg {
@@ -94,7 +95,7 @@ data.innerText= now
       <div id="images-grid">
         <div
           id="hidden"
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto justify-content-center g-3"
+          class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-auto justify-content-center g-3"
         >
           <div class="col">
             <a href="https://youtu.be/dQw4w9WgXcQ"
@@ -834,6 +835,14 @@ data.innerText= now
       </div>
     </div>
   </div>`
+  
+  let arrow = document.getElementById("arrow")
+arrow.addEventListener("click", function(){
+    
+})
+
+
+
   const searchButton = document.getElementById("search-button");
   
 console.log(searchButton)
@@ -980,6 +989,8 @@ searchButton.addEventListener("click", function (e) {
 });
 
 })
+//  }
+
 
 
 
