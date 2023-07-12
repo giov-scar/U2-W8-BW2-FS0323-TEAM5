@@ -36,6 +36,10 @@ html {
   height: 100%;
 }
 
+#bar {
+  margin-top: 100px;
+}
+
 main {
   background-color: black;
 }
@@ -121,6 +125,4 @@ input[type=checkbox]:checked + label #left-hearts g:last-child {
     opacity: 0;
     transform: translateY(-50px);
   }
-#bar {
-  margin-top: 100px;
-}# sourceMappingURL=main-style.css.map
+}/*# sourceMappingURL=main.css.map */
