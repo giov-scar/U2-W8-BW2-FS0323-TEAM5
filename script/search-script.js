@@ -114,7 +114,7 @@ newCol.classList.add ('col')
           </div>
         </div>
         
-        <div class="card mb-3 d-md-none bg-secondary">
+        <div class="card mb-3 d-md-none bg-dark text-light">
   <div class="row g-0">
     <div class="col-md-3">
       <img src="${imageAlbumUrl}" class="img-fluid rounded-start" width="100px" alt="${nameAlbum}">
