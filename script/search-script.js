@@ -147,6 +147,8 @@ searchButton.addEventListener("click", function (e) {
 });
 
 searchInput.addEventListener("keypress", function (e) {
-  e.preventDefault();
-  mysearch();
+  if (e.key === "Enter") {
+    e.preventDefault();
+    mysearch();
+  }
 });
