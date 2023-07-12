@@ -101,6 +101,10 @@ if (albumId) {
          
         </audio>
         </div>
+<div id='track-info' class='d-none'>
+<span id='img-album-url'>${e.album.cover_small}</span>
+
+        </div>
             <div class="col col-1" id="position">
               <p class="text-white align-middle">${index}</p>
             </div>
@@ -112,6 +116,7 @@ if (albumId) {
 
             <div class="col col-1 p-0">
               <svg
+              id='play'
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="40"
@@ -136,10 +141,23 @@ if (albumId) {
       // add play pause function on all tracks
       let allTracks = document.querySelectorAll(".play");
       const mainPlayButton = document.getElementById("play");
+      const playBottom = document.getElementById("play-fixed");
+      console.log(mainPlayButton);
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
-          let audio = this.querySelector("#audio");
+          let albumImgUrl = this.querySelector("#img-album-url").innerText;
+          let title = this.querySelector("h6").innerText;
+          fixedPalyer.innerHTML = `
+            <div>
+           <img src="${albumImgUrl}" alt="album-img" srcset="">
+            </div>
+            <div>
+            <span class='text-white'>${title}</span>
+            </div>
+            <div id="bar"></div>
+            `;
 
+          let audio = this.querySelector("#audio");
           const allAudio = document.querySelectorAll("audio");
           if (audio.paused) {
             allAudio.forEach((e) => {
@@ -153,14 +171,22 @@ if (albumId) {
           console.log(audioSelected);
           return (audioSelected = audio);
         });
-        mainPlayButton.addEventListener("click", () => {
-          if (audioSelected.paused) {
-            console.log(audioSelected);
-            audioSelected.play();
-          } else {
-            audioSelected.pause();
-          }
-        });
+      });
+      mainPlayButton.addEventListener("click", () => {
+        if (audioSelected.paused) {
+          console.log(audioSelected);
+          audioSelected.play();
+        } else {
+          audioSelected.pause();
+        }
+      });
+      playBottom.addEventListener("click", () => {
+        if (audioSelected.paused) {
+          console.log(audioSelected);
+          audioSelected.play();
+        } else {
+          audioSelected.pause();
+        }
       });
     })
     .catch((err) => {
