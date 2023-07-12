@@ -139,6 +139,7 @@ if (albumId) {
 
       let audioSelected;
       // add play pause function on all tracks
+      const playerBottom = document.getElementById("icon");
       let allTracks = document.querySelectorAll(".play");
       const mainPlayButton = document.getElementById("play");
       const playBottom = document.getElementById("play-fixed");
@@ -147,6 +148,7 @@ if (albumId) {
         track.addEventListener("click", function () {
           let albumImgUrl = this.querySelector("#img-album-url").innerText;
           let title = this.querySelector("h6").innerText;
+          playerBottom.classList.remove("d-none");
           fixedPalyer.innerHTML = `
             <div>
            <img src="${albumImgUrl}" alt="album-img" srcset="">
