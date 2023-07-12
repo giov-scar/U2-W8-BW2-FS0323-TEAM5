@@ -9,7 +9,7 @@ const searchUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 
 let now= new Date().getFullYear()
 let data= document.getElementById("copy")
-data.innerText=  now 
+data.innerText= now 
 
 
 // let minWidth = window.innerWidth
@@ -19,7 +19,8 @@ data.innerText=  now
     searchButton1.addEventListener("click", function(){
     let container= document.getElementById("cerca")
 
-    container.innerHTML=`   <div class="container">
+    container.innerHTML=`  
+     <div class="container ">
     <div class="row my-5 justify-content-center">
       <div class="col-lg-6 d-flex align-items-center">
         <div class="buttons-search col mx-2">
