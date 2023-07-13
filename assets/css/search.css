@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(18, 18, 18);
+  background-color: black;
 }
 
 #search-input {
@@ -9,6 +9,7 @@ body {
   font-size: 1.5em;
   font-weight: bold;
   width: 100%;
+  opacity: 0.6;
 }
 
 #search-input:hover {
@@ -230,6 +231,7 @@ a {
     border-radius: 40px;
     padding: 20px 30px;
     border: none;
+    opacity: 0.6;
   }
 
   #search-button-container {
