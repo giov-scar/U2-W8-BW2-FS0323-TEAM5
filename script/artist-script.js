@@ -311,7 +311,27 @@ if (artistId) {
          
           allTracks.forEach((track) => {
             track.addEventListener("click", function () {
+              let audio = this.querySelector("#audio");
+              const allAudio = document.querySelectorAll("audio");
+              console.log("audioselected", audioSelected);
+              if (audioSelected===audio){
+                if (audio.paused) {
+                  
+                  audio.play();
+                  timelineIndicator.style.animationPlayState = "running";
+                  addPauseIcon(playIconContainer);
+                } else {
+                  audio.pause();
+                  timelineIndicator.style.animationPlayState = "paused";
+                  addPlayIcon(playIconContainer);
+                }
+              }
+              else{
+              
               resetAnimation(timelineIndicator);
+              
+              
+              
               let albumImgUrl = this.querySelector("#img-album-url").innerText;
               let trackTitle = this.querySelector("h6").innerText;
               let mediumColor = start();
@@ -321,8 +341,7 @@ if (artistId) {
               playerBottom.classList.remove("d-none");
     
               // active audio tag selcted on click
-              let audio = this.querySelector("#audio");
-              const allAudio = document.querySelectorAll("audio");
+              
               if (audio.paused) {
                 allAudio.forEach((e) => {
                   e.pause();
@@ -338,7 +357,9 @@ if (artistId) {
               }
     
               return (audioSelected = audio);
+            }
             });
+            
           });
     
           //  function to play pause at main play button
