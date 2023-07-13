@@ -289,6 +289,15 @@ a {
   display: none;
 }
 
+#card-col {
+  transition: 1.2s ease;
+}
+
+#card-col:hover {
+  transform: scale(1.1);
+  z-index: 2;
+}
+
 @media screen and (min-width: 1000px) {
   #footer-desktop {
     display: block;
