@@ -178,8 +178,6 @@ if (artistId) {
 
           const mainPlayButton = document.getElementById("play-button");
           const playBottom = document.getElementById("play-fixed");
-          console.log(playBottom);
-          console.log(mainPlayButton);
 
           const fixedPalyer = document.getElementById("album");
           const playerBottom = document.getElementById("icon");
@@ -214,18 +212,43 @@ if (artistId) {
               } else {
                 audio.pause();
               }
-              console.log(audioSelected);
+
               return (audioSelected = audio);
             });
           });
           console.log("audioselected", audioSelected);
 
           mainPlayButton.addEventListener("click", () => {
-            if (audioSelected.paused) {
-              console.log(audioSelected);
-              audioSelected.play();
+            if (audioSelected === undefined) {
+              let firstAudio = document.querySelector("audio");
+              let firstTrackInfo = firstAudio.parentElement.parentElement;
+              console.log(firstTrackInfo);
+
+              let firstalbumImgUrl =
+                firstTrackInfo.querySelector("#img-album-url").innerText;
+              let firstTitle = firstTrackInfo.querySelector("h6").innerText;
+              playerBottom.classList.remove("d-none");
+              fixedPalyer.innerHTML = `
+                <div>
+               <img src="${firstalbumImgUrl}" alt="album-img" srcset="">
+                </div>
+                <div>
+                <span class='text-white'>${firstTitle}</span>
+                </div>
+                <div id="bar"></div>
+                `;
+              if (firstAudio.paused) {
+                firstAudio.play();
+              } else {
+                firstAudio.pause();
+              }
+              return (audioSelected = firstAudio);
             } else {
-              audioSelected.pause();
+              if (audioSelected.paused) {
+                audioSelected.play();
+              } else {
+                audioSelected.pause();
+              }
             }
           });
           console.log("audioselected", audioSelected);
