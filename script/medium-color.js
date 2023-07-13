@@ -57,17 +57,15 @@ const pad = function (hex) {
 };
 
 // const generateImage = function () {
-  // genero dinamicamente un tag <img /> in un <div> vuoto
+// genero dinamicamente un tag <img /> in un <div> vuoto
 
 //   let imageSrc =
 //     "https://e-cdns-images.dzcdn.net/images/artist/7f6e8be161417ad8ce8f09b45721544f/500x500-000000-80-0-0.jpg";
 
-
-
 //   let reference = document.getElementById("container");
 
-  // l'event listener "onload" nel tag <img /> si occupa di lanciare la funzione "start()" solamente
-  // al termine del caricamento della src
+// l'event listener "onload" nel tag <img /> si occupa di lanciare la funzione "start()" solamente
+// al termine del caricamento della src
 //   reference.innerHTML = `
 //       <img
 //         src=${imageSrc}
@@ -81,7 +79,7 @@ const pad = function (hex) {
 
 const start = function () {
   // prendo il riferimento all'immagine del dom
-  let imgReference = document.querySelector("#img");
+  let imgReference = document.querySelector("#img-album-color");
 
   // creo il context 2d dell'immagine selezionata
   let context = draw(imgReference);
@@ -98,12 +96,9 @@ const start = function () {
   // console.log del risultato
   console.log(mostRecurrentHex);
 
-//   let containerDiv = document.getElementById("mediumBg");
-//   containerDiv.style.background = `#${mostRecurrentHex}`;
+  //   let containerDiv = document.getElementById("mediumBg");
+  //   containerDiv.style.background = `#${mostRecurrentHex}`;
 };
 
 // generateImage();
-start()
-
-
-
+start();
