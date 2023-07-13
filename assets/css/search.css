@@ -262,3 +262,12 @@ a {
   text-align: center;
   background-color: rgb(18, 18, 18);
 }
+
+#card-carousel {
+  transition: 1.2s ease;
+}
+
+#card-carousel:hover {
+  transform: scale(1.1);
+  z-index: 2;
+}
