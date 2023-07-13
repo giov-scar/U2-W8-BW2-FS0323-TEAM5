@@ -1,11 +1,16 @@
 console.log("hello world");
-
+console.log("hello world");
 const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist";
 const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/";
 const searchUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 
 const addressBarContent = new URLSearchParams(location.search);
 const albumId = addressBarContent.get("id");
+
+const playIconContainer = document.getElementById("play-fixed");
+
+const timelineIndicator = document.querySelector(".timeline-indicator");
+
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
   let canvas = document.createElement("canvas");
@@ -88,6 +93,77 @@ const start = function () {
   //   containerDiv.style.background = `#${mostRecurrentHex}`;
 };
 
+// const playerAudio = function (element, img, title) {
+//   element.innerHTML = `<div id="album">
+//   <img src="${img}" alt="album-img" srcset="">
+//   </div>
+//   <div class="track-info">
+//     // <div class="track-name">
+//       <div id="track-title">
+//       ${title}
+//       </div>
+//     </div>
+//   </div>
+//   <div></div>
+//   <div id="cmd">
+//     <button class="like">
+//       <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         width="20"
+//         height="20"
+//         fill="currentColor"
+//         class="bi bi-heart"
+//         viewBox="0 0 16 16"
+//       >
+//         <path
+//           d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
+//         />
+//       </svg>
+//     </button>
+//     <button class="play-button" id="play-fixed">
+//       <svg
+//         xmlns="http://www.w3.org/2000/svg"
+//         width="30"
+//         height="30"
+//         fill="currentColor"
+//         class="bi bi-play-fill"
+//         viewBox="0 0 16 16"
+//       >
+//         <path
+//           d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+//         />
+//       </svg>
+//     </button>
+//   </div>
+//   <div class="timeline">
+//     <div class="timeline-indicator"></div>
+//   </div>
+//     `;
+// };
+const addPauseIcon = function (element) {
+  element.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" 
+  fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+  <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 
+  .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+  </svg>`;
+};
+
+const addPlayIcon = function (element) {
+  element.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+  class="bi bi-play-fill" viewBox="0 0 16 16">
+  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+  </svg>
+  `;
+};
+
+const resetAnimation = function (el) {
+  el.style.animation = "none";
+  el.offsetHeight; /* trigger reflow */
+  el.style.animation = null;
+};
+
 if (albumId) {
   fetch(albumUrl + albumId)
     .then((res) => {
@@ -114,9 +190,8 @@ if (albumId) {
 
       imgAlbumColor.addEventListener("load", () => {
         let mediumColor = start();
-        console.log(mediumColor);
+
         const bgContainer = document.getElementById("mediumBg");
-        console.log(bgContainer);
 
         bgContainer.style.background = `linear-gradient(0deg, rgba(0,0,0,1) 0%, #${mediumColor} 100%)`;
       });
@@ -142,7 +217,6 @@ if (albumId) {
       //   selected album container
       const albumInformationContainer =
         document.getElementById("album-information");
-      console.log(albumInformationContainer);
       const arrayInformation = Array.from(albumInformationContainer.children);
       //   delete all placeholder
       arrayInformation.forEach((e) => {
@@ -160,7 +234,7 @@ if (albumId) {
               />
               <span class="text-white mx-3">${artistName}</span>
               <p class="text-white">
-               ${year} &centerdot; ${numberTracks} brani, circa ${hours} ora ${minutes} min
+              ${year} &centerdot; ${numberTracks} brani, circa ${hours} ora ${minutes} min
               </p>
 `;
 
@@ -183,15 +257,15 @@ if (albumId) {
         newTrack.innerHTML = `
         <div class='d-none'>
         <audio
-       id='audio'
+        id='audio'
         controls
           src="${e.preview}"
         >
-         
+        
         </audio>
         </div>
-<div id='track-info' class='d-none'>
-<span id='img-album-url'>${e.album.cover_small}</span>
+        <div id='track-info' class='d-none'>
+        <span id='img-album-url'>${e.album.cover_small}</span>
 
         </div>
             <div class="col col-1" id="position">
@@ -223,72 +297,28 @@ if (albumId) {
         trackContainer.appendChild(newTrack);
         index += 1;
       });
-
-      const fixedPalyer = document.getElementById("album");
-
+      // create a variable to set the audio active
       let audioSelected;
       // add play pause function on all tracks
+
       const playerBottom = document.getElementById("icon");
-      let allTracks = document.querySelectorAll(".play");
       const mainPlayButton = document.getElementById("play");
-      const playBottom = document.getElementById("play-fixed");
-      console.log(mainPlayButton);
+
+      // select all div of track and add an add event listner
+      let allTracks = document.querySelectorAll(".play");
+
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
+          resetAnimation(timelineIndicator);
           let albumImgUrl = this.querySelector("#img-album-url").innerText;
-          let title = this.querySelector("h6").innerText;
+          let trackTitle = this.querySelector("h6").innerText;
           let mediumColor = start();
-
+          // add a background color to audio player
           playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
+
           playerBottom.classList.remove("d-none");
 
-          fixedPalyer.innerHTML = `
-          <div id="album">
-          <img src="${albumImgUrl}" alt="album-img" srcset="">
-          </div>
-          <div class="track-info">
-            <div class="track-name">
-              <div id="track-title">
-              ${title}
-              </div>
-            </div>
-          </div>
-          <div></div>
-          <div id="cmd">
-            <button class="like">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                class="bi bi-heart"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
-                />
-              </svg>
-            </button>
-            <button class="play-button" id="play-fixed">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="timeline">
-            <div class="timeline-indicator"></div>
-          </div>
-            `;
-
+          // active audio tag selcted on click
           let audio = this.querySelector("#audio");
           const allAudio = document.querySelectorAll("audio");
           if (audio.paused) {
@@ -297,14 +327,23 @@ if (albumId) {
               e.currentTime = 0;
             });
             audio.play();
+            timelineIndicator.style.animationPlayState = "running";
+            addPauseIcon(playIconContainer);
           } else {
             audio.pause();
+            timelineIndicator.style.animationPlayState = "paused";
+            addPlayIcon(playIconContainer);
           }
-          console.log(audioSelected);
+
           return (audioSelected = audio);
         });
       });
+
+      //  function to play pause at main play button
+
       mainPlayButton.addEventListener("click", () => {
+        // start fisrt track on-click
+
         if (audioSelected === undefined) {
           let firstAudio = document.querySelector("audio");
           let firstTrackInfo = firstAudio.parentElement.parentElement;
@@ -317,90 +356,44 @@ if (albumId) {
           playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
 
           playerBottom.classList.remove("d-none");
-          fixedPalyer.innerHTML = `
-          <div id="album">
-          <img src="${firstalbumImgUrl}" alt="album-img" srcset="">
-          </div>
-          <div class="track-info">
-            <div class="track-name">
-              <div id="track-title">
-              ${firstTitle}
-              </div>
-            </div>
-          </div>
-          <div></div>
-          <div id="cmd">
-            <button class="like">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                class="bi bi-heart"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
-                />
-              </svg>
-            </button>
-            <button class="play-button" id="play-fixed">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                class="bi bi-play-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="timeline">
-            <div class="timeline-indicator"></div>
-          </div>
-            `;
+
+          // selecet icon play container
+
           if (firstAudio.paused) {
             firstAudio.play();
-            
+            timelineIndicator.style.animationPlayState = "running";
+            addPauseIcon(playIconContainer);
           } else {
             firstAudio.pause();
+            timelineIndicator.style.animationPlayState = "paused";
+            addPlayIcon(playIconContainer);
           }
+
           return (audioSelected = firstAudio);
         } else {
           if (audioSelected.paused) {
             audioSelected.play();
+            timelineIndicator.style.animationPlayState = "running";
+            addPauseIcon(playIconContainer);
           } else {
             audioSelected.pause();
+            timelineIndicator.style.animationPlayState = "paused";
+            addPlayIcon(playIconContainer);
           }
         }
       });
-        
-        
-        const timelineIndicator = document.querySelector(".timeline-indicator");
+      // selecet icon play container
 
-      playBottom.addEventListener("click", () => {
-          const isRunning = timelineIndicator.style.animationPlayState !== "paused";
-          console.log(isRunning);
-          timelineIndicator.style.animationPlayState = isRunning ? "paused" : "running";
-          // playButtonIcon.name = isRunning ? "play-sharp" : "pause-sharp";
-        
-        
+      playIconContainer.addEventListener("click", () => {
         if (audioSelected.paused) {
           console.log(audioSelected);
           audioSelected.play();
-       playBottom.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
-           <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-         </svg>`
-   
+          timelineIndicator.style.animationPlayState = "running";
+          addPauseIcon(playIconContainer);
         } else {
-          audioSelected.pause(); 
-              playBottom.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-          <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-        </svg>`
+          audioSelected.pause();
+          timelineIndicator.style.animationPlayState = "paused";
+          addPlayIcon(playIconContainer);
         }
       });
     })

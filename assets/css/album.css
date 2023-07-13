@@ -233,3 +233,27 @@ h5{
     }
   }
   
+
+
+  .buttons-search a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    font-size: 1.5em;
+    background-color: black;
+    border: none;
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  .buttons-search svg{
+    height: 20px;
+  }
+
+  #explore button:hover{
+    transform: scale(1.05);
+  z-index: 2;
+  }
