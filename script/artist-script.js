@@ -28,7 +28,7 @@ if (artistId) {
     })
     .then((data) => {
       console.log(data);
-
+      hidePlaceholder();
       // add artist data in HTML
       let newRow = document.createElement("div");
       newRow.classList.add("row");
@@ -37,8 +37,7 @@ if (artistId) {
       <div class="col col-12 d-flex flex-row justify-content-center my-4">
         <!--  ARTIST IMAGE -->
         <img
-          src="${data.picture_medium}  "
-              
+          src="${data.picture_medium}  "  
           alt="Artist Cover"
           id="img"
           class="rounded-circle"
@@ -50,7 +49,6 @@ if (artistId) {
         <h5 class="text-white">${data.name}</h5>
         <p class="text-secondary">${data.nb_fan} ascoltatori mensili</p>
       </div>
-      
       <div class="col col-12 ps-5">
         <!--  FOLLOWING SHARING AND PLAY ICONS  -->
         <div
@@ -93,14 +91,14 @@ if (artistId) {
           </div>
       
           <div class="col text-end">
-            <svg
+          <svg
+              id="play-button"
               xmlns="http://www.w3.org/2000/svg"
               width="50"
               height="65"
               fill="#1DB954"
               class="bi bi-play-circle-fill"
               viewBox="0 0 16 16"
-              id="play"
             >
               <path
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
@@ -121,8 +119,6 @@ if (artistId) {
           }
         })
         .then((tracks) => {
-          hidePlaceholder();
-
           let myTracks = tracks.data;
           console.log(myTracks);
           let index = 1;
@@ -134,32 +130,32 @@ if (artistId) {
               "d-flex",
               "flex-row",
               "align-items-center",
-              "ps-5"
+              "ps-5",
+              "play-tracks"
             );
             newCol.innerHTML = `
             <div class='d-none'>
-        <audio
-       id='audio'
-        controls
-          src="${e.preview}"
-        >
-         
-        </audio>
-        </div>
-<div id='track-info' class='d-none'>
-<span id='img-album-url'>${e.album.cover_small}</span>
+            <audio
+            id='audio'
+            controls
+            src="${e.preview}"
+            >
+            </audio>
+            </div>
+            <div id='track-info' class='d-none'>
+            <span id='img-album-url'>${e.album.cover_small}</span>
 
-        </div>
-          <div class="col col-1" id="position">
+            </div>
+            <div class="col col-1" id="position">
             <p class="text-white align-middle">${index}</p>
-          </div>
+            </div>
 
-          <div class="col col-10" id="track-title">
+            <div class="col col-10" id="track-title">
             <h6 class="text-white mb-0">${e.title}</h6>
             <p class="text-secondary">${e.rank}</p>
-          </div>
+            </div>
 
-          <div class="col col-1 p-0">
+            <div class="col col-1 p-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -169,24 +165,27 @@ if (artistId) {
               viewBox="0 0 16 16"
               id="more-info"
             >
-              <path
-                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
-              />
+            <path
+            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+            />
             </svg>
-          </div> 
-`;
+            </div> 
+            `;
             index += 1;
             tracksContainer.appendChild(newCol);
           });
+          // select play button
+
+          const mainPlayButton = document.getElementById("play-button");
+          const playBottom = document.getElementById("play-fixed");
+
           const fixedPalyer = document.getElementById("album");
+          const playerBottom = document.getElementById("icon");
 
           let audioSelected;
+          console.log("audioselected", audioSelected);
           // add play pause function on all tracks
-          const playerBottom = document.getElementById("icon");
-          let allTracks = document.querySelectorAll(".play");
-          const mainPlayButton = document.getElementById("play");
-          const playBottom = document.getElementById("play-fixed");
-          console.log(mainPlayButton);
+          let allTracks = document.querySelectorAll(".play-tracks");
           allTracks.forEach((track) => {
             track.addEventListener("click", function () {
               let albumImgUrl = this.querySelector("#img-album-url").innerText;
@@ -213,18 +212,47 @@ if (artistId) {
               } else {
                 audio.pause();
               }
-              console.log(audioSelected);
+
               return (audioSelected = audio);
             });
           });
+          console.log("audioselected", audioSelected);
+
           mainPlayButton.addEventListener("click", () => {
-            if (audioSelected.paused) {
-              console.log(audioSelected);
-              audioSelected.play();
+            if (audioSelected === undefined) {
+              let firstAudio = document.querySelector("audio");
+              let firstTrackInfo = firstAudio.parentElement.parentElement;
+              console.log(firstTrackInfo);
+
+              let firstalbumImgUrl =
+                firstTrackInfo.querySelector("#img-album-url").innerText;
+              let firstTitle = firstTrackInfo.querySelector("h6").innerText;
+              playerBottom.classList.remove("d-none");
+              fixedPalyer.innerHTML = `
+                <div>
+               <img src="${firstalbumImgUrl}" alt="album-img" srcset="">
+                </div>
+                <div>
+                <span class='text-white'>${firstTitle}</span>
+                </div>
+                <div id="bar"></div>
+                `;
+              if (firstAudio.paused) {
+                firstAudio.play();
+              } else {
+                firstAudio.pause();
+              }
+              return (audioSelected = firstAudio);
             } else {
-              audioSelected.pause();
+              if (audioSelected.paused) {
+                audioSelected.play();
+              } else {
+                audioSelected.pause();
+              }
             }
           });
+          console.log("audioselected", audioSelected);
+
           playBottom.addEventListener("click", () => {
             if (audioSelected.paused) {
               console.log(audioSelected);
@@ -233,6 +261,12 @@ if (artistId) {
               audioSelected.pause();
             }
           });
+        })
+        .catch((err) => {
+          console.log(err);
         });
+    })
+    .catch((err) => {
+      console.log(err);
     });
 }

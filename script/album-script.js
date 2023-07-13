@@ -150,11 +150,11 @@ if (albumId) {
           let title = this.querySelector("h6").innerText;
           playerBottom.classList.remove("d-none");
           fixedPalyer.innerHTML = `
-            <div>
+            <div class="p-3">
            <img src="${albumImgUrl}" alt="album-img" srcset="">
             </div>
             <div>
-            <span class='text-white'>${title}</span>
+            <span class='text-white ms-2'>${title}</span>
             </div>
             <div id="bar"></div>
             `;

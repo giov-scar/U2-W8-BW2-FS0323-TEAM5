@@ -19,52 +19,56 @@ data.innerText= now
     searchButton1.addEventListener("click", function(){
     let container= document.getElementById("cerca")
 
-    container.innerHTML=`  
-     <div class="container ">
-    <div class="row my-5 justify-content-center">
+    container.innerHTML=`   <div id="cerca" class="bg-dark">
+    <h1>Cerca</h1>
+  </div>
+  <div class="container bg-dark">
+    <div class="row my-5 justify-content-center bg-dark">
       <div class="col-lg-6 d-flex align-items-center">
-        <div class="buttons-search col mx-2">
-          <a
-            href="javascript:history.go(-1)"
-            onMouseOver="self.status=document.referrer;return true"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 320 512"
-              id="arrow"
+        <div id="buttons-search-container">
+          <div class="buttons-search col mx-2">
+            <a
+              href="javascript:history.go(-1)"
+              onMouseOver="self.status=document.referrer;return true"
             >
-              <style>
-                svg {
-                  fill: #ffffff;
-                }
-              </style>
-              <path
-                d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
-              />
-            </svg>
-          </a>
-        </div>
-        <div class="buttons-search col mx-2">
-          <a
-            href="javascript:history.go(+1)"
-            onMouseOver="self.status=document.referrer;return true"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="1em"
-              viewBox="0 0 320 512"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 320 512"
+                à
+              >
+                <style>
+                  svg {
+                    fill: #ffffff;
+                  }
+                </style>
+                <path
+                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="buttons-search col mx-2">
+            <a
+              href="javascript:history.go(+1)"
+              onMouseOver="self.status=document.referrer;return true"
             >
-              <style>
-                svg {
-                  fill: #ffffff;
-                }
-              </style>
-              <path
-                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-              />
-            </svg>
-          </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 320 512"
+              >
+                <style>
+                  svg {
+                    fill: #ffffff;
+                  }
+                </style>
+                <path
+                  d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
 
         <form class="input-group ms-3">
@@ -74,30 +78,41 @@ data.innerText= now
             class="form-control bg-dark text-white"
             placeholder=" Cosa vuoi ascoltare?"
           />
-          <div class="p-2">
-            <button id="search-button" type="button" class="btn btn-primary">
-              Cerca
-            </button>
-          </div>
         </form>
+        <div class="p-2" id="search-button-container">
+          <button id="search-button" type="button" class="btn bg-dark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  <div>
+  <div class="ms-3">
     <div id="sub-title">
       <h2 class="my-4">Ascolta i tuoi contenuti preferiti</h2>
       <p>Cerca artisti, brani, podcast, audiolibri e altro.</p>
-      <h2 class="my-5">Sfoglia tutto</h2>
     </div>
+    <h2 id="sfoglia" class="my-5 text-light">Sfoglia tutto</h2>
   </div>
   <div>
-    <div class="bg-dark container-fluid">
+    <div class="container-fluid bg-dark">
       <div id="images-grid">
         <div
           id="hidden"
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-auto justify-content-center g-3"
+          class="row row-cols-12 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto justify-content-center g-3"
         >
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ"
               ><div class="card overflow-hidden" id="card1">
                 <div class="card-body text-white">
@@ -113,7 +128,7 @@ data.innerText= now
             ></a>
           </div>
 
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card2">
                 <div class="card-body text-white">
@@ -127,7 +142,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card3">
                 <div class="card-body text-white">
@@ -141,7 +156,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card4">
                 <div class="card-body text-white">
@@ -155,7 +170,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card5">
                 <div class="card-body text-white">
@@ -169,7 +184,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card6">
                 <div class="card-body text-white">
@@ -183,7 +198,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card7">
                 <div class="card-body text-white">
@@ -197,7 +212,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card8">
                 <div class="card-body text-white">
@@ -211,7 +226,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card9">
                 <div class="card-body text-white">
@@ -225,7 +240,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card10">
                 <div class="card-body text-white">
@@ -239,7 +254,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card11">
                 <div class="card-body text-white">
@@ -254,7 +269,7 @@ data.innerText= now
             ></a>
           </div>
 
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card12">
                 <div class="card-body text-white">
@@ -268,7 +283,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card13">
                 <div class="card-body text-white">
@@ -282,7 +297,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card14">
                 <div class="card-body text-white">
@@ -296,7 +311,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card15">
                 <div class="card-body text-white">
@@ -310,7 +325,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card16">
                 <div class="card-body text-white">
@@ -324,7 +339,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card17">
                 <div class="card-body text-white">
@@ -338,7 +353,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card18">
                 <div class="card-body text-white">
@@ -352,7 +367,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card19">
                 <div class="card-body text-white">
@@ -366,7 +381,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card20">
                 <div class="card-body text-white">
@@ -380,7 +395,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card21">
                 <div class="card-body text-white">
@@ -395,7 +410,7 @@ data.innerText= now
             ></a>
           </div>
 
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card22">
                 <div class="card-body text-white">
@@ -409,7 +424,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card23">
                 <div class="card-body text-white">
@@ -423,7 +438,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card24">
                 <div class="card-body text-white">
@@ -437,7 +452,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card25">
                 <div class="card-body text-white">
@@ -451,7 +466,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card26">
                 <div class="card-body text-white">
@@ -465,7 +480,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card27">
                 <div class="card-body text-white">
@@ -479,7 +494,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card28">
                 <div class="card-body text-white">
@@ -493,7 +508,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card29">
                 <div class="card-body text-white">
@@ -507,7 +522,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card30">
                 <div class="card-body text-white">
@@ -521,7 +536,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card31">
                 <div class="card-body text-white">
@@ -536,7 +551,7 @@ data.innerText= now
             ></a>
           </div>
 
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card32">
                 <div class="card-body text-white">
@@ -550,7 +565,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card33">
                 <div class="card-body text-white">
@@ -564,7 +579,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card34">
                 <div class="card-body text-white">
@@ -578,7 +593,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card35">
                 <div class="card-body text-white">
@@ -592,7 +607,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card36">
                 <div class="card-body text-white">
@@ -606,7 +621,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card37">
                 <div class="card-body text-white">
@@ -620,7 +635,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card38">
                 <div class="card-body text-white">
@@ -634,7 +649,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card39">
                 <div class="card-body text-white">
@@ -648,7 +663,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card40">
                 <div class="card-body text-white">
@@ -662,7 +677,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card41">
                 <div class="card-body text-white">
@@ -677,7 +692,7 @@ data.innerText= now
             ></a>
           </div>
 
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card42">
                 <div class="card-body text-white">
@@ -691,7 +706,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card43">
                 <div class="card-body text-white">
@@ -705,7 +720,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card44">
                 <div class="card-body text-white">
@@ -719,7 +734,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card45">
                 <div class="card-body text-white">
@@ -733,7 +748,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card46">
                 <div class="card-body text-white">
@@ -747,7 +762,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card47">
                 <div class="card-body text-white">
@@ -761,7 +776,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card48">
                 <div class="card-body text-white">
@@ -775,7 +790,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card49">
                 <div class="card-body text-white">
@@ -789,7 +804,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card50">
                 <div class="card-body text-white">
@@ -803,7 +818,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card51">
                 <div class="card-body text-white">
@@ -817,7 +832,7 @@ data.innerText= now
                 /></div
             ></a>
           </div>
-          <div class="col">
+          <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ">
               <div class="card overflow-hidden" id="card52">
                 <div class="card-body text-white">
@@ -835,18 +850,20 @@ data.innerText= now
       </div>
     </div>
   </div>`
-  
-  let arrow = document.getElementById("arrow")
-arrow.addEventListener("click", function(){
+     
+//   let arrow = document.getElementById("arrow")
+// arrow.addEventListener("click", function(){
     
-})
+// })
 
 
 
   const searchButton = document.getElementById("search-button");
   
 console.log(searchButton)
+
 const searchInput = document.getElementById("search-input");
+console.log(searchInput)
 
 const hiddenContainer = document.getElementById("hidden");
 const containerSearchResult = document.getElementById("images-grid");
@@ -940,7 +957,7 @@ newCol.classList.add ('col')
         let albumId = e.id;
         const albumResultContainer = document.getElementById("album-result");
         let newAlbum = document.createElement("div");
-        newAlbum.classList.add("col-12","col-md-4", "col-lg-3", "col-xl-2");
+        newAlbum.classList.add("col-12","col-md-4", "col-lg-4", "col-xl-3","col-xxl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
@@ -988,7 +1005,19 @@ searchButton.addEventListener("click", function (e) {
   mysearch();
 });
 
+
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    mysearch();
+  }
+});
 })
+
+
+
+
+
 //  }
 
 
