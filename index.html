@@ -154,7 +154,7 @@
           class="d-none d-md-block d-md-flex flex-column col-md-3 justify-content-beetween h-100"
         >
           <div class="text-ligth bg-dark rounded-3">
-            <p>
+            <p class="mt-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -169,7 +169,7 @@
               </svg>
               Home
             </p>
-            <p class="text-light text-decoration-none">
+            <p class="text-light text-decoration-none rounded-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -187,12 +187,42 @@
             </p>
           </div>
           <div class="text-ligth bg-dark rounded-3 h-100 mt-1">
-            <div class="d-flex justify-content-beetween w-100 m-3">
-              <p>La tua libreria</p>
-              <p>+</p>
+            <div class="d-flex justify-content-between m-3">
+              <div class="text-light text-decoration-none rounded-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-collection"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"
+                  />
+                </svg>
+                La tua libreria
+              </div>
+              <div>
+                <button id="plus-button" class="text-ligth bg-dark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-plus-lg"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
             <div
-              class="text-ligth bg-secondary bg-opacity-25 rounded-3 p-2 m-2"
+              class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
             >
               <h6>Crea la tua prima playlist</h6>
               <p>È facile, ti aiuteremo</p>
@@ -201,7 +231,7 @@
               </button>
             </div>
             <div
-              class="text-ligth bg-secondary bg-opacity-25 rounded-3 p-2 m-2"
+              class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
             >
               <h6>Crea qualche podcast da seguire</h6>
               <p>Ti aggiorneremo per i nuovi episodi</p>
@@ -212,7 +242,7 @@
           </div>
         </div>
         <div
-          class="col-md-9 bg-dark h-100 rounded-3 d-flex flex-column mt-0 justify-content-between"
+          class="col-md-9 p-0 bg-dark h-100 rounded-3 d-flex flex-column mt-0 justify-content-between"
           id="cerca"
         >
           <main class="rounded-3 bg-dark">
@@ -604,7 +634,7 @@
               </div>
             </section>
           </main>
-          <div class="d-flex flex-column bg-dark">
+          <div class="d-flex flex-column">
             <aside
               class="container-fluid my-5 d-flex w-100 justify-content-md-between w-100"
             >

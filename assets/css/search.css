@@ -249,3 +249,16 @@ a {
   text-align: center;
   opacity: 0.6;
 }
+
+#plus-button {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+  text-align: center;
+  background-color: rgb(18, 18, 18);
+}
