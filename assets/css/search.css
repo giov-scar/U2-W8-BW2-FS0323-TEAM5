@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(18, 18, 18);
+  background-color: black;
 }
 
 #search-input {
@@ -9,6 +9,7 @@ body {
   font-size: 1.5em;
   font-weight: bold;
   width: 100%;
+  opacity: 0.6;
 }
 
 #search-input:hover {
@@ -230,10 +231,15 @@ a {
     border-radius: 40px;
     padding: 20px 30px;
     border: none;
+    opacity: 0.6;
   }
 
   #search-button-container {
     display: none;
+  }
+
+  #footer-mobile {
+    display: block;
   }
 }
 
@@ -270,4 +276,34 @@ a {
 #card-carousel:hover {
   transform: scale(1.1);
   z-index: 2;
+}
+
+#footer-mobile ul {
+  text-decoration: none;
+  list-style-type: none;
+
+  padding-left: 0;
+}
+
+#footer-desktop {
+  display: none;
+}
+
+#card-col {
+  transition: 1.2s ease;
+}
+
+#card-col:hover {
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+@media screen and (min-width: 1000px) {
+  #footer-desktop {
+    display: block;
+  }
+
+  #footer-mobile {
+    display: none;
+  }
 }
