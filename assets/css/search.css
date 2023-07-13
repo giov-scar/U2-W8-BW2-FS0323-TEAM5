@@ -235,6 +235,10 @@ a {
   #search-button-container {
     display: none;
   }
+
+  #footer-mobile {
+    display: block;
+  }
 }
 
 #search-button {
@@ -270,4 +274,25 @@ a {
 #card-carousel:hover {
   transform: scale(1.1);
   z-index: 2;
+}
+
+#footer-mobile ul {
+  text-decoration: none;
+  list-style-type: none;
+
+  padding-left: 0;
+}
+
+#footer-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 1000px) {
+  #footer-desktop {
+    display: block;
+  }
+
+  #footer-mobile {
+    display: none;
+  }
 }
