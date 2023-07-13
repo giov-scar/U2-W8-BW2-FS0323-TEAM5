@@ -9,7 +9,8 @@ body {
   font-size: 1.5em;
   font-weight: bold;
   width: 100%;
-  opacity: 0.6;
+
+  background-color: black !important;
 }
 
 #search-input:hover {
@@ -23,17 +24,14 @@ body {
 
 #search-input::placeholder {
   color: white;
-  opacity: 0.5;
 }
 
 #search-input:-ms-input-placeholder {
   color: white;
-  opacity: 0.5;
 }
 
 #search-input::-ms-input-placeholder {
   color: white;
-  opacity: 0.5;
 }
 
 #buttons-search-container {
@@ -51,7 +49,6 @@ body {
   background-color: black;
   border: none;
   text-align: center;
-  opacity: 0.5;
 }
 
 #sub-title {
@@ -189,7 +186,7 @@ a {
 }
 
 #cerca {
-  display: block;
+  display: flex;
   color: white;
   margin-top: 100px;
 }
@@ -231,7 +228,6 @@ a {
     border-radius: 40px;
     padding: 20px 30px;
     border: none;
-    opacity: 0.6;
   }
 
   #search-button-container {
@@ -253,7 +249,12 @@ a {
   width: 50px;
   border: none;
   text-align: center;
-  opacity: 0.6;
+
+  background-color: black !important;
+}
+
+.buttons-side {
+  border: none;
 }
 
 #plus-button {
