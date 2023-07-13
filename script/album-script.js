@@ -291,6 +291,7 @@ if (albumId) {
             `;
           if (firstAudio.paused) {
             firstAudio.play();
+            
           } else {
             firstAudio.pause();
           }
