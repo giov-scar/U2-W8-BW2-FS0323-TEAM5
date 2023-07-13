@@ -110,7 +110,7 @@ data.innerText= now
       <div id="images-grid">
         <div
           id="hidden"
-          class="row row-cols-12 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-auto justify-content-center g-3"
+          class="row row-cols-12 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-auto justify-content-center g-3"
         >
           <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ"
@@ -957,7 +957,7 @@ newCol.classList.add ('col')
         let albumId = e.id;
         const albumResultContainer = document.getElementById("album-result");
         let newAlbum = document.createElement("div");
-        newAlbum.classList.add("col-12","col-md-4", "col-lg-4", "col-xl-3","col-xxl-2");
+        newAlbum.classList.add("col-12","col-md-6", "col-lg-4", "col-xl-3","col-xxl-2");
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
