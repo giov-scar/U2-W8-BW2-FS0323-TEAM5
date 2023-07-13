@@ -5,10 +5,16 @@ const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album";
 const searchUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 
 const addressBarContent = new URLSearchParams(location.search);
+
 const artistId = addressBarContent.get("id");
+
 const playIconContainer = document.getElementById("play-fixed");
 
 const timelineIndicator = document.querySelector(".timeline-indicator");
+
+const playerImgContainer = document.getElementById("album")
+
+const playerTitleContainer = document.getElementById("player-track-title")
 
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
@@ -327,13 +333,16 @@ if (artistId) {
                 }
               }
               else{
-              
               resetAnimation(timelineIndicator);
-              
-              
-              
               let albumImgUrl = this.querySelector("#img-album-url").innerText;
               let trackTitle = this.querySelector("h6").innerText;
+              playerImgContainer.innerHTML = `<img
+              src=${albumImgUrl }
+              alt="artist-photo"
+              class="rounded-circle mb-3"
+            />`
+              playerTitleContainer.innerHTML =`${trackTitle}`
+
               let mediumColor = start();
               // add a background color to audio player
               playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
@@ -374,7 +383,12 @@ if (artistId) {
               let firstalbumImgUrl =
                 firstTrackInfo.querySelector("#img-album-url").innerText;
               let firstTitle = firstTrackInfo.querySelector("h6").innerText;
-    
+              playerImgContainer.innerHTML = `<img
+              src=${firstalbumImgUrl }
+              alt="artist-photo"
+              class="rounded-circle mb-3"
+            />`
+              playerTitleContainer.innerHTML =`${firstTitle}`
               let mediumColor = start();
     
               playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
