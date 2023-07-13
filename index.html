@@ -187,62 +187,74 @@
             </p>
           </div>
           <div class="text-ligth bg-dark rounded-3 h-100 mt-1">
-            <div class="d-flex justify-content-between m-3">
-              <div class="text-light text-decoration-none rounded-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-collection"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"
-                  />
-                </svg>
-                La tua libreria
-              </div>
-              <div>
-                <button id="plus-button" class="text-ligth bg-dark">
+            <div class="d-flex flex-column justify-content-between mt-3">
+              <div class="d-flex justify-content-between m-3">
+                <div class="text-light text-decoration-none rounded-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-plus-lg"
+                    class="bi bi-collection"
                     viewBox="0 0 16 16"
                   >
                     <path
-                      fill-rule="evenodd"
-                      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                      d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"
                     />
                   </svg>
+                  La tua libreria
+                </div>
+                <div>
+                  <button id="plus-button" class="text-ligth bg-dark">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-plus-lg"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
+              >
+                <h6>Crea la tua prima playlist</h6>
+                <p>È facile, ti aiuteremo</p>
+                <button type="button" class="btn btn-light rounded-5 fw-bold">
+                  Crea Playlist
                 </button>
               </div>
-            </div>
-            <div
-              class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
-            >
-              <h6>Crea la tua prima playlist</h6>
-              <p>È facile, ti aiuteremo</p>
-              <button type="button" class="btn btn-light rounded-5 fw-bold">
-                Crea Playlist
-              </button>
-            </div>
-            <div
-              class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
-            >
-              <h6>Crea qualche podcast da seguire</h6>
-              <p>Ti aggiorneremo per i nuovi episodi</p>
-              <button type="button" class="btn btn-light rounded-5 fw-bold">
-                Sfoglia i podcast
-              </button>
+              <div
+                class="text-ligth bg-secondary bg-opacity-25 rounded-3 px-2 py-3 m-2"
+              >
+                <h6>Crea qualche podcast da seguire</h6>
+                <p>Ti aggiorneremo per i nuovi episodi</p>
+                <button type="button" class="btn btn-light rounded-5 fw-bold">
+                  Sfoglia i podcast
+                </button>
+              </div>
+              <div id="footer-mobile" class="mt-5 ms-2">
+                <ul>
+                  <li>Informazioni legali</li>
+                  <li>Centro sulla privacy</li>
+                  <li>Informazioni sulla privacy</li>
+                  <li>Impostazioni cookie</li>
+                  <li>Info annunci</li>
+                  <li>Accesibilità</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="col-md-9 p-0 bg-dark rounded-3 d-flex flex-column mt-0 justify-content-between h-100"
+          class="col-md-9 p-0 bg-dark h-100 rounded-3 d-flex flex-column mt-0 justify-content-between"
           id="cerca"
         >
           <main class="rounded-3 bg-dark">
@@ -255,51 +267,59 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8 mt-4"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-1.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=xAdmfbMOilw">
+                          <img
+                            src="assets/imgs/main/image-1.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-2.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=8O_m_hBEdw0">
+                          <img
+                            src="assets/imgs/main/image-2.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-3.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=hS-zRp4UrEI">
+                          <img
+                            src="assets/imgs/main/image-3.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-4.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=9UAC2qkcrDY">
+                          <img
+                            src="assets/imgs/main/image-4.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-5.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a
+                          href="https://www.youtube.com/watch?v=ktRsHUMtWj0&list=PLDsX4waZaS7tIdRsQRjvNiaKq4YVFWfB9&index=35"
+                        >
+                          <img
+                            src="assets/imgs/main/image-5.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-6.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=N5ApZWM4kys">
+                          <img
+                            src="assets/imgs/main/image-6.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -310,51 +330,59 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-7.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a
+                          href="https://www.youtube.com/watch?v=rlMKfFQWI4o&list=PLDsX4waZaS7tIdRsQRjvNiaKq4YVFWfB9&index=40"
+                        >
+                          <img
+                            src="assets/imgs/main/image-7.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-8.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=j9V78UbdzWI">
+                          <img
+                            src="assets/imgs/main/image-8.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-9.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=Eax4oQb5p04">
+                          <img
+                            src="assets/imgs/main/image-9.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-10.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=WfGMYdalClU">
+                          <img
+                            src="assets/imgs/main/image-10.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-11.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=RUaYbfKZIiA">
+                          <img
+                            src="assets/imgs/main/image-11.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-12.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=_0Q8iLlFHz0">
+                          <img
+                            src="assets/imgs/main/image-12.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -364,51 +392,59 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-13.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a
+                          href="https://www.youtube.com/watch?v=R_EHGCpUs3c&list=PLDsX4waZaS7tIdRsQRjvNiaKq4YVFWfB9&index=29"
+                        >
+                          <img
+                            src="assets/imgs/main/image-13.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-14.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=Hj8y4QIwrd0">
+                          <img
+                            src="assets/imgs/main/image-14.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-15.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=4_C_yCEfoTA">
+                          <img
+                            src="assets/imgs/main/image-15.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-16.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/shorts/17eP-3sFWL0">
+                          <img
+                            src="assets/imgs/main/image-16.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-17.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=isEul94EV3k">
+                          <img
+                            src="assets/imgs/main/image-17.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-18.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=WTLOQO8sX8Q">
+                          <img
+                            src="assets/imgs/main/image-18.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -450,51 +486,59 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8 mt-4"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-9.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=Eax4oQb5p04">
+                          <img
+                            src="assets/imgs/main/image-9.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-10.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=WfGMYdalClU">
+                          <img
+                            src="assets/imgs/main/image-10.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-13.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a
+                          href="https://www.youtube.com/watch?v=R_EHGCpUs3c&list=PLDsX4waZaS7tIdRsQRjvNiaKq4YVFWfB9&index=30"
+                        >
+                          <img
+                            src="assets/imgs/main/image-13.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-14.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=Hj8y4QIwrd0">
+                          <img
+                            src="assets/imgs/main/image-14.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-12.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=8O_m_hBEdw0">
+                          <img
+                            src="assets/imgs/main/image-12.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-19.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=xAdmfbMOilw">
+                          <img
+                            src="assets/imgs/main/image-19.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -504,51 +548,57 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-1.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=N5ApZWM4kys">
+                          <img
+                            src="assets/imgs/main/image-1.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-4.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=j9V78UbdzWI">
+                          <img
+                            src="assets/imgs/main/image-4.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-7.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=_0Q8iLlFHz0">
+                          <img
+                            src="assets/imgs/main/image-7.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-6.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=Hj8y4QIwrd0">
+                          <img
+                            src="assets/imgs/main/image-6.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-9.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=WTLOQO8sX8Q">
+                          <img
+                            src="assets/imgs/main/image-9.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-10.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=isEul94EV3k">
+                          <img
+                            src="assets/imgs/main/image-10.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -558,50 +608,56 @@
                       class="row row-cols row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 row-cols-xxl-8"
                     >
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-3.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=znD8tXq6edg">
+                          <img
+                            src="assets/imgs/main/image-3.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col">
-                        <img
-                          src="assets/imgs/main/image-11.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=oE5JTpoIYck">
+                          <img
+                            src="assets/imgs/main/image-11.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-sm-block">
-                        <img
-                          src="assets/imgs/main/image-7.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=C6f2Tjwt__k">
+                          <img
+                            src="assets/imgs/main/image-7.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                       </div>
                       <div id="card-carousel" class="col d-none d-lg-block">
-                        <img
-                          src="assets/imgs/main/image-9.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=gunoQA6s9gg">
+                          <img
+                            src="assets/imgs/main/image-9.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-10.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=mUH_v9jIGmQ">
+                          <img
+                            src="assets/imgs/main/image-10.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                       <div id="card-carousel" class="col d-none d-xl-block">
-                        <img
-                          src="assets/imgs/main/image-18.jpg"
-                          class="d-block w-100"
-                          alt="..."
-                        />
+                        <a href="https://www.youtube.com/watch?v=oE5JTpoIYck">
+                          <img
+                            src="assets/imgs/main/image-18.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                        /></a>
                         <p></p>
                       </div>
                     </div>
@@ -720,10 +776,12 @@
               </div>
             </aside>
             <!-- FOOTER -->
-            <footer class="mt-5 position-absolute-bottom-0">
+
+            <!-- ASIDE -->
+            <footer id="footer-desktop" class="mt-5 position-absolute-bottom-0">
               <div class="container-fluid d-flex justify-content-between">
                 <div class="mx-5 mb-5">
-                  <span class="mx-2">informazioni legali</span>
+                  <span class="mx-2">Informazioni legali</span>
                   <span class="mx-2">Centro sulla privacy</span>
                   <span class="mx-2">Informazioni sulla privacy</span>
                   <span class="mx-2">Impostazioni cookie</span>
