@@ -93,14 +93,14 @@ if (artistId) {
           </div>
       
           <div class="col text-end">
-            <svg
+          <svg
+              id="play"
               xmlns="http://www.w3.org/2000/svg"
               width="50"
               height="65"
               fill="#1DB954"
               class="bi bi-play-circle-fill"
               viewBox="0 0 16 16"
-              id="play"
             >
               <path
                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
@@ -134,7 +134,8 @@ if (artistId) {
               "d-flex",
               "flex-row",
               "align-items-center",
-              "ps-5"
+              "ps-5",
+              "play"
             );
             newCol.innerHTML = `
             <div class='d-none'>
