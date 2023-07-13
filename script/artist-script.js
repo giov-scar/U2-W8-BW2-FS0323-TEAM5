@@ -16,6 +16,7 @@ const playerImgContainer = document.getElementById("album")
 
 const playerTitleContainer = document.getElementById("player-track-title")
 
+const carouselAlbum= document.getElementById('carouselAlbum')
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
   let canvas = document.createElement("canvas");
@@ -129,8 +130,12 @@ const artistDataContainer = document.getElementById("artist-container");
 const hidePlaceholder = function () {
   const tracksPlaceholder = document.getElementById("tracks-placeholder");
   const artistPlaceholder = document.getElementById("artist-placeholder");
+  const carouselPlaceHolder = document.querySelectorAll(".carousel-placeHolder");
   tracksPlaceholder.classList.add("d-none");
   artistPlaceholder.classList.add("d-none");
+  carouselPlaceHolder.forEach(e=>{
+    e.remove()
+  });
 };
 
 if (artistId) {
@@ -248,8 +253,9 @@ if (artistId) {
         .then((tracks) => {
           let myTracks = tracks.data;
           console.log(myTracks);
-          let index = 1;
-          myTracks.forEach((e) => {
+          let numberIndex = 1;
+          myTracks.forEach((e,index) => {
+            console.log(index);
             let newCol = document.createElement("div");
             newCol.classList.add(
               "row",
@@ -274,7 +280,7 @@ if (artistId) {
 
             </div>
             <div class="col col-1" id="position">
-            <p class="text-white align-middle">${index}</p>
+            <p class="text-white align-middle">${numberIndex}</p>
             </div>
 
             <div class="col col-10" id="track-title">
@@ -298,8 +304,134 @@ if (artistId) {
             </svg>
             </div> 
             `;
-            index += 1;
+            numberIndex += 1;
             tracksContainer.appendChild(newCol);
+if (index<3){
+let carouselItem = document.getElementById ('first-item')
+let carousleAlbumTitle=e.album.title
+let carousleAlbumImg=e.album.cover_medium
+let newCarouselItem = document.createElement ('div')
+newCarouselItem.classList.add ('col-3')
+newCarouselItem.innerHTML=`
+<img
+src="${carousleAlbumImg}"
+class="d-block w-100"
+alt="${carousleAlbumTitle}"
+/>
+<p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+<p class="text-secondary text-center">
+Album
+</p>
+</div>
+`
+carouselItem.appendChild(newCarouselItem)
+}
+else if (index>=3 && index <6){
+let secondCarouselItem = document.getElementById ('second-item')
+
+if(secondCarouselItem === null){
+let newCarousel = document.createElement('div')
+newCarousel.classList.add('carousel-item')
+newCarousel.innerHTML=`<div id="second-item" class="row"></div>`
+carouselAlbum.appendChild (newCarousel)
+
+secondCarouselItem = document.getElementById ('second-item')
+
+  let carousleAlbumTitle=e.album.title
+  let carousleAlbumImg=e.album.cover_medium
+  let newCarouselItem = document.createElement ('div')
+  newCarouselItem.classList.add ('col-3')
+  newCarouselItem.innerHTML=`
+  <img
+  src="${carousleAlbumImg}"
+  class="d-block w-100"
+  alt="${carousleAlbumTitle}"
+  />
+  <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+  <p class="text-secondary text-center">
+  Album
+  </p>
+  </div>
+  `
+  secondCarouselItem.appendChild(newCarouselItem)
+}
+else{
+  let carousleAlbumTitle=e.album.title
+  let carousleAlbumImg=e.album.cover_medium
+  let newCarouselItem = document.createElement ('div')
+  newCarouselItem.classList.add ('col-3')
+  newCarouselItem.innerHTML=`
+  <img
+  src="${carousleAlbumImg}"
+  class="d-block w-100"
+  alt="${carousleAlbumTitle}"
+  />
+  <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+  <p class="text-secondary text-center">
+  Album
+  </p>
+  </div>
+  `
+  secondCarouselItem.appendChild(newCarouselItem)
+
+
+}
+
+}else if (index>=6 && index <9){
+
+  let thirdCarouselItem = document.getElementById ('second-item')
+
+  if(thirdCarouselItem === null){
+  let newCarousel = document.createElement('div')
+  newCarousel.classList.add('carousel-item')
+  newCarousel.innerHTML=`<div id="third-item" class="row"></div>`
+  carouselAlbum.appendChild (newCarousel)
+  
+  thirdCarouselItem = document.getElementById ('third-item')
+  
+    let carousleAlbumTitle=e.album.title
+    let carousleAlbumImg=e.album.cover_medium
+    let newCarouselItem = document.createElement ('div')
+    newCarouselItem.classList.add ('col-3')
+    newCarouselItem.innerHTML=`
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `
+    thirdCarouselItem.appendChild(newCarouselItem)
+  }
+  else{
+    let carousleAlbumTitle=e.album.title
+    let carousleAlbumImg=e.album.cover_medium
+    let newCarouselItem = document.createElement ('div')
+    newCarouselItem.classList.add ('col-3')
+    newCarouselItem.innerHTML=`
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `
+    thirdCarouselItem.appendChild(newCarouselItem)
+  
+  
+  }
+
+}
+
+
           });
           // select play button
 
