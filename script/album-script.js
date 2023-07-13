@@ -309,33 +309,45 @@ if (albumId) {
 
       allTracks.forEach((track) => {
         track.addEventListener("click", function () {
-          resetAnimation(timelineIndicator);
-          let albumImgUrl = this.querySelector("#img-album-url").innerText;
-          let trackTitle = this.querySelector("h6").innerText;
-          let mediumColor = start();
-          // add a background color to audio player
-          playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
-
-          playerBottom.classList.remove("d-none");
-
-          // active audio tag selcted on click
           let audio = this.querySelector("#audio");
           const allAudio = document.querySelectorAll("audio");
-          if (audio.paused) {
-            allAudio.forEach((e) => {
-              e.pause();
-              e.currentTime = 0;
-            });
-            audio.play();
-            timelineIndicator.style.animationPlayState = "running";
-            addPauseIcon(playIconContainer);
+          if (audioSelected === audio) {
+            if (audio.paused) {
+              audio.play();
+              timelineIndicator.style.animationPlayState = "running";
+              addPauseIcon(playIconContainer);
+            } else {
+              audio.pause();
+              timelineIndicator.style.animationPlayState = "paused";
+              addPlayIcon(playIconContainer);
+            }
           } else {
-            audio.pause();
-            timelineIndicator.style.animationPlayState = "paused";
-            addPlayIcon(playIconContainer);
-          }
+            resetAnimation(timelineIndicator);
+            let albumImgUrl = this.querySelector("#img-album-url").innerText;
+            let trackTitle = this.querySelector("h6").innerText;
+            let mediumColor = start();
+            // add a background color to audio player
+            playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
 
-          return (audioSelected = audio);
+            playerBottom.classList.remove("d-none");
+
+            // active audio tag selcted on click
+            if (audio.paused) {
+              allAudio.forEach((e) => {
+                e.pause();
+                e.currentTime = 0;
+              });
+              audio.play();
+              timelineIndicator.style.animationPlayState = "running";
+              addPauseIcon(playIconContainer);
+            } else {
+              audio.pause();
+              timelineIndicator.style.animationPlayState = "paused";
+              addPlayIcon(playIconContainer);
+            }
+
+            return (audioSelected = audio);
+          }
         });
       });
 
