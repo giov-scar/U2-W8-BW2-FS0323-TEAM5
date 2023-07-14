@@ -14,6 +14,7 @@ data.innerText = now;
 // let minWidth = window.innerWidth
 // console.log(minWidth)
 //  if(minWidth>=768){
+
 let searchButton1 = document.getElementById("search");
 searchButton1.addEventListener("click", function () {
   let container = document.getElementById("cerca");
