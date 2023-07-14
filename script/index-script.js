@@ -15,6 +15,639 @@ data.innerText = now;
 // console.log(minWidth)
 //  if(minWidth>=768){
 
+const artistClick = function (id) {
+  const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/";
+  const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album";
+  const searchUrl =
+    "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
+
+  const artistId = id;
+
+  const playIconContainer = document.getElementById("play-fixed");
+
+  const timelineIndicator = document.querySelector(".timeline-indicator");
+
+  const playerImgContainer = document.getElementById("album");
+
+  const playerTitleContainer = document.getElementById("player-track-title");
+
+  const carouselAlbum = document.getElementById("carouselAlbum");
+
+  let equalContainer;
+  // crea un canvas con l'immagine e ne ritorno il context 2d
+  const draw = function (img) {
+    let canvas = document.createElement("canvas");
+    let c = canvas.getContext("2d");
+    c.width = canvas.width = img.clientWidth;
+    c.height = canvas.height = img.clientHeight;
+    c.clearRect(0, 0, c.width, c.height);
+    c.drawImage(img, 0, 0, img.clientWidth, img.clientHeight);
+    return c;
+  };
+
+  // scompone pixel per pixel e ritorna un oggetto con una mappa della loro frequenza nell'immagine
+  const getColors = function (c) {
+    let col,
+      colors = {};
+    let pixels, r, g, b, a;
+    r = g = b = a = 0;
+    pixels = c.getImageData(0, 0, c.width, c.height);
+    for (let i = 0, data = pixels.data; i < data.length; i += 4) {
+      r = data[i];
+      g = data[i + 1];
+      b = data[i + 2];
+      a = data[i + 3];
+      if (a < 255 / 2) continue;
+      col = rgbToHex(r, g, b);
+      if (!colors[col]) colors[col] = 0;
+      colors[col]++;
+    }
+    return colors;
+  };
+
+  // trova il colore più ricorrente data una mappa di frequenza dei colori
+  const findMostRecurrentColor = function (colorMap) {
+    let highestValue = 0;
+    let mostRecurrent = null;
+    for (const hexColor in colorMap) {
+      if (colorMap[hexColor] > highestValue) {
+        mostRecurrent = hexColor;
+        highestValue = colorMap[hexColor];
+      }
+    }
+    return mostRecurrent;
+  };
+
+  // converte un valore in rgb a un valore esadecimale
+  const rgbToHex = function (r, g, b) {
+    if (r > 255 || g > 255 || b > 255) {
+      throw "Invalid color component";
+    } else {
+      return ((r << 16) | (g << 8) | b).toString(16);
+    }
+  };
+
+  // inserisce degli '0' se necessario davanti al colore in esadecimale per renderlo di 6 caratteri
+  const pad = function (hex) {
+    return ("000000" + hex).slice(-6);
+  };
+
+  const start = function () {
+    // prendo il riferimento all'immagine del dom
+    let imgReference = document.querySelector("#img-album-color");
+    console.log(imgReference);
+    // creo il context 2d dell'immagine selezionata
+    let context = draw(imgReference);
+
+    // creo la mappa dei colori più ricorrenti nell'immagine
+    let allColors = getColors(context);
+
+    // trovo colore più ricorrente in esadecimale
+    let mostRecurrent = findMostRecurrentColor(allColors);
+
+    // se necessario, aggiunge degli '0' per rendere il risultato un valido colore esadecimale
+    let mostRecurrentHex = pad(mostRecurrent);
+
+    // console.log del risultato
+    console.log(mostRecurrentHex);
+    return mostRecurrentHex;
+
+    //   let containerDiv = document.getElementById("mediumBg");
+    //   containerDiv.style.background = `#${mostRecurrentHex}`;
+  };
+
+  const addPauseIcon = function (element) {
+    element.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" 
+    fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+    <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 
+    .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+    </svg>`;
+  };
+
+  const addPlayIcon = function (element) {
+    element.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+    class="bi bi-play-fill" viewBox="0 0 16 16">
+    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+    </svg>
+    `;
+  };
+
+  const resetAnimation = function (el) {
+    el.style.animation = "none";
+    el.offsetHeight; /* trigger reflow */
+    el.style.animation = null;
+  };
+
+  const tracksContainer = document.getElementById("tracks-container");
+  const artistDataContainer = document.getElementById("artist-container");
+
+  const hidePlaceholder = function () {
+    const tracksPlaceholder = document.getElementById("tracks-placeholder");
+    const artistPlaceholder = document.getElementById("artist-placeholder");
+    const carouselPlaceHolder = document.querySelectorAll(
+      ".carousel-placeHolder"
+    );
+    tracksPlaceholder.classList.add("d-none");
+    artistPlaceholder.classList.add("d-none");
+    carouselPlaceHolder.forEach((e) => {
+      e.remove();
+    });
+  };
+
+  const addEqualizer = function (element) {
+    let number = element.querySelector("p");
+    let newDiv = element.querySelector("#equal");
+    number.classList.add("d-none");
+    newDiv.classList.remove("d-none");
+  };
+  const removeEqualizer = function (element) {
+    let number = element.querySelector("p");
+
+    number.classList.remove("d-none");
+    let equalizer = element.querySelector("#equal");
+
+    equalizer.classList.add("d-none");
+  };
+
+  const clearEqualizer = function () {
+    const allEqualActive = document.querySelectorAll("#equal");
+    const equalizerNumber = document.querySelectorAll("#equalizer-number");
+    equalizerNumber.forEach((e) => {
+      e.classList.remove("d-none");
+    });
+    allEqualActive.forEach((e) => {
+      e.classList.add("d-none");
+    });
+  };
+
+  if (artistId) {
+    fetch(artistUrl + artistId)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new error(error);
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        hidePlaceholder();
+        // add artist data in HTML
+        let newRow = document.createElement("div");
+        newRow.classList.add("row");
+        newRow.setAttribute("id", "mediumBg");
+        newRow.innerHTML = `  
+        <div class="col col-12 d-flex flex-row justify-content-center my-4">
+          <!--  ARTIST IMAGE -->
+          <img
+          id='img-album-color'
+            src="${data.picture_medium}  "  
+            alt="Artist Cover"
+            crossorigin='anonymous'
+            class="rounded-circle"
+          />
+        </div>
+        
+        <div class="col col-10 ps-5">
+          <!--  ARTIST INFORMATION  -->
+          <h5 class="text-white">${data.name}</h5>
+          <p class="text-secondary">${data.nb_fan} ascoltatori mensili</p>
+        </div>
+        <div class="col col-12 ps-5">
+          <!--  FOLLOWING SHARING AND PLAY ICONS  -->
+          <div
+            class="row d-flex flex-row justify-content-between align-items-center"
+          >
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-outline-light rounded-pill py-1 px-3"
+              >
+                Segui
+              </button>
+        
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="35"
+                fill="grey"
+                class="bi bi-share mx-2"
+                viewBox="0 0 16 16"
+                id="share"
+              >
+                <path
+                  d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="35"
+                fill="grey"
+                class="bi bi-three-dots-vertical"
+                viewBox="0 0 16 16"
+                id="more-info"
+              >
+                <path
+                  d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                />
+              </svg>
+            </div>
+        
+            <div class="col text-end">
+            <svg
+                id="play"
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="65"
+                fill="#1DB954"
+                class="bi bi-play-circle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        `;
+        artistDataContainer.appendChild(newRow);
+
+        imgAlbumColor = document.getElementById("img-album-color");
+
+        imgAlbumColor.addEventListener("load", () => {
+          let mediumColor = start();
+
+          const bgContainer = document.getElementById("mediumBg");
+
+          bgContainer.style.background = `linear-gradient(0deg, rgba(0,0,0,1) 0%, #${mediumColor} 100%)`;
+        });
+
+        fetch(data.tracklist)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new error(error);
+            }
+          })
+          .then((tracks) => {
+            let myTracks = tracks.data;
+            console.log(myTracks);
+            let numberIndex = 1;
+            myTracks.forEach((e, index) => {
+              console.log(index);
+              let newCol = document.createElement("div");
+              newCol.classList.add(
+                "row",
+                "mt-5",
+                "d-flex",
+                "flex-row",
+                "align-items-center",
+                "ps-5",
+                "play-tracks"
+              );
+              newCol.innerHTML = `
+              <div class='d-none'>
+              <audio
+              id='audio'
+              controls
+              src="${e.preview}"
+              >
+              </audio>
+              </div>
+              <div id='track-info' class='d-none'>
+              <span id='img-album-url'>${e.album.cover_small}</span>
+  
+              </div>
+              <div class="col col-1" id="position">
+              <p class="text-white align-middle">${numberIndex}</p>
+              <div id='equal' class='d-none'>
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="#1DB954"
+  >
+  <rect
+    class="eq-bar eq-bar--1"
+    x="4"
+    y="4"
+    width="3.7"
+    height="8"
+  />
+  <rect
+    class="eq-bar eq-bar--2"
+    x="10.2"
+    y="4"
+    width="3.7"
+    height="16"
+  />
+  <rect
+    class="eq-bar eq-bar--3"
+    x="16.3"
+    y="4"
+    width="3.7"
+    height="11"
+  />
+  </svg>
+  </div>
+              </div>
+              </div>
+  
+              <div class="col col-10" id="track-title">
+              <h6 class="text-white mb-0">${e.title}</h6>
+              <p class="text-secondary">${e.rank}</p>
+              </div>
+  
+              <div class="col col-1 p-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="40"
+                fill="white"
+                class="bi bi-three-dots-vertical"
+                viewBox="0 0 16 16"
+                id="more-info"
+              >
+              <path
+              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+              />
+              </svg>
+              </div> 
+              `;
+              numberIndex += 1;
+              tracksContainer.appendChild(newCol);
+              if (index < 3) {
+                let carouselItem = document.getElementById("first-item");
+                let carousleAlbumTitle = e.album.title;
+                let carousleAlbumImg = e.album.cover_medium;
+                let newCarouselItem = document.createElement("div");
+                newCarouselItem.classList.add("col-3");
+                newCarouselItem.innerHTML = `
+  <img
+  src="${carousleAlbumImg}"
+  class="d-block w-100"
+  alt="${carousleAlbumTitle}"
+  />
+  <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+  <p class="text-secondary text-center">
+  Album
+  </p>
+  </div>
+  `;
+                carouselItem.appendChild(newCarouselItem);
+              } else if (index >= 3 && index < 6) {
+                let secondCarouselItem = document.getElementById("second-item");
+
+                if (secondCarouselItem === null) {
+                  let newCarousel = document.createElement("div");
+                  newCarousel.classList.add("carousel-item");
+                  newCarousel.innerHTML = `<div id="second-item" class="row"></div>`;
+                  carouselAlbum.appendChild(newCarousel);
+
+                  secondCarouselItem = document.getElementById("second-item");
+
+                  let carousleAlbumTitle = e.album.title;
+                  let carousleAlbumImg = e.album.cover_medium;
+                  let newCarouselItem = document.createElement("div");
+                  newCarouselItem.classList.add("col-3");
+                  newCarouselItem.innerHTML = `
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `;
+                  secondCarouselItem.appendChild(newCarouselItem);
+                } else {
+                  let carousleAlbumTitle = e.album.title;
+                  let carousleAlbumImg = e.album.cover_medium;
+                  let newCarouselItem = document.createElement("div");
+                  newCarouselItem.classList.add("col-3");
+                  newCarouselItem.innerHTML = `
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `;
+                  secondCarouselItem.appendChild(newCarouselItem);
+                }
+              } else if (index >= 6 && index < 9) {
+                let thirdCarouselItem = document.getElementById("second-item");
+
+                if (thirdCarouselItem === null) {
+                  let newCarousel = document.createElement("div");
+                  newCarousel.classList.add("carousel-item");
+                  newCarousel.innerHTML = `<div id="third-item" class="row"></div>`;
+                  carouselAlbum.appendChild(newCarousel);
+
+                  thirdCarouselItem = document.getElementById("third-item");
+
+                  let carousleAlbumTitle = e.album.title;
+                  let carousleAlbumImg = e.album.cover_medium;
+                  let newCarouselItem = document.createElement("div");
+                  newCarouselItem.classList.add("col-3");
+                  newCarouselItem.innerHTML = `
+      <img
+      src="${carousleAlbumImg}"
+      class="d-block w-100"
+      alt="${carousleAlbumTitle}"
+      />
+      <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+      <p class="text-secondary text-center">
+      Album
+      </p>
+      </div>
+      `;
+                  thirdCarouselItem.appendChild(newCarouselItem);
+                } else {
+                  let carousleAlbumTitle = e.album.title;
+                  let carousleAlbumImg = e.album.cover_medium;
+                  let newCarouselItem = document.createElement("div");
+                  newCarouselItem.classList.add("col-3");
+                  newCarouselItem.innerHTML = `
+      <img
+      src="${carousleAlbumImg}"
+      class="d-block w-100"
+      alt="${carousleAlbumTitle}"
+      />
+      <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+      <p class="text-secondary text-center">
+      Album
+      </p>
+      </div>
+      `;
+                  thirdCarouselItem.appendChild(newCarouselItem);
+                }
+              }
+            });
+            // select play button
+
+            const mainPlayButton = document.getElementById("play");
+            let allTracks = document.querySelectorAll(".play-tracks");
+            const playerBottom = document.getElementById("icon");
+
+            // select all div of track and add an add event listner
+            let audioSelected;
+            console.log("audioselected", audioSelected);
+
+            allTracks.forEach((track) => {
+              track.addEventListener("click", function () {
+                let audio = this.querySelector("#audio");
+                const allAudio = document.querySelectorAll("audio");
+                equalContainer = this.querySelector("#position");
+                console.log("audioselected", audioSelected);
+                if (audioSelected === audio) {
+                  if (audio.paused) {
+                    audio.play();
+                    addEqualizer(equalContainer);
+                    timelineIndicator.style.animationPlayState = "running";
+                    addPauseIcon(playIconContainer);
+                  } else {
+                    audio.pause();
+                    removeEqualizer(equalContainer);
+                    timelineIndicator.style.animationPlayState = "paused";
+                    addPlayIcon(playIconContainer);
+                  }
+                } else {
+                  clearEqualizer();
+                  resetAnimation(timelineIndicator);
+                  let albumImgUrl =
+                    this.querySelector("#img-album-url").innerText;
+                  let trackTitle = this.querySelector("h6").innerText;
+                  playerImgContainer.innerHTML = `<img
+                src=${albumImgUrl}
+                alt="artist-photo"
+                class="rounded-circle mb-3"
+              />`;
+                  playerTitleContainer.innerHTML = `${trackTitle}`;
+
+                  let mediumColor = start();
+                  // add a background color to audio player
+                  playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
+
+                  playerBottom.classList.remove("d-none");
+
+                  // active audio tag selcted on click
+
+                  if (audio.paused) {
+                    allAudio.forEach((e) => {
+                      e.pause();
+                      e.currentTime = 0;
+                    });
+                    audio.play();
+                    addEqualizer(equalContainer);
+                    timelineIndicator.style.animationPlayState = "running";
+                    addPauseIcon(playIconContainer);
+                  } else {
+                    audio.pause();
+                    removeEqualizer(equalContainer);
+                    timelineIndicator.style.animationPlayState = "paused";
+                    addPlayIcon(playIconContainer);
+                  }
+
+                  return (audioSelected = audio);
+                }
+              });
+            });
+
+            //  function to play pause at main play button
+            console.log("audioselected", audioSelected);
+
+            mainPlayButton.addEventListener("click", () => {
+              // start fisrt track on-click
+
+              if (audioSelected === undefined) {
+                let firstAudio = document.querySelector("audio");
+                let firstTrackInfo = firstAudio.parentElement.parentElement;
+                equalContainer = firstTrackInfo.querySelector("#position");
+                let firstalbumImgUrl =
+                  firstTrackInfo.querySelector("#img-album-url").innerText;
+                let firstTitle = firstTrackInfo.querySelector("h6").innerText;
+                playerImgContainer.innerHTML = `<img
+                src=${firstalbumImgUrl}
+                alt="artist-photo"
+                class="rounded-circle mb-3"
+              />`;
+                playerTitleContainer.innerHTML = `${firstTitle}`;
+                let mediumColor = start();
+
+                playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
+
+                playerBottom.classList.remove("d-none");
+
+                // selecet icon play container
+
+                if (firstAudio.paused) {
+                  firstAudio.play();
+                  addEqualizer(equalContainer);
+                  timelineIndicator.style.animationPlayState = "running";
+                  addPauseIcon(playIconContainer);
+                } else {
+                  firstAudio.pause();
+                  removeEqualizer(equalContainer);
+                  timelineIndicator.style.animationPlayState = "paused";
+                  addPlayIcon(playIconContainer);
+                }
+
+                return (audioSelected = firstAudio);
+              } else {
+                if (audioSelected.paused) {
+                  audioSelected.play();
+                  addEqualizer(equalContainer);
+                  timelineIndicator.style.animationPlayState = "running";
+                  addPauseIcon(playIconContainer);
+                } else {
+                  audioSelected.pause();
+                  removeEqualizer(equalContainer);
+                  timelineIndicator.style.animationPlayState = "paused";
+                  addPlayIcon(playIconContainer);
+                }
+              }
+            });
+            // selecet icon play container
+
+            playIconContainer.addEventListener("click", () => {
+              if (audioSelected.paused) {
+                console.log(audioSelected);
+                audioSelected.play();
+                addEqualizer(equalContainer);
+                timelineIndicator.style.animationPlayState = "running";
+                addPauseIcon(playIconContainer);
+              } else {
+                audioSelected.pause();
+                timelineIndicator.style.animationPlayState = "paused";
+                addPlayIcon(playIconContainer);
+                removeEqualizer(equalContainer);
+              }
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
+
 // function for click album
 const albumClick = function (id) {
   const artistUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist";
@@ -1387,8 +2020,8 @@ searchButton1.addEventListener("click", function () {
           let newCol = document.createElement("div");
           newCol.classList.add("col");
 
-          newCol.innerHTML = `<a href="./artist.html?id=${artistid}">
-            <div>
+          newCol.innerHTML = `
+            <div class='my-artist'>
               <img
                 id="artist-img"
                 class="rounded-circle"
@@ -1396,8 +2029,9 @@ searchButton1.addEventListener("click", function () {
                 alt="${nameArtist}"
               />
               <span id="artist-name" class='text-white'>${nameArtist}</span>
+              <p id='artist-id' class='d-none'>${artistid}</p>
             </div>
-            </a>
+            
          `;
           artistContainer.appendChild(newCol);
           localStorage.clear();
@@ -1448,6 +2082,345 @@ searchButton1.addEventListener("click", function () {
         `;
 
           albumResultContainer.appendChild(newAlbum);
+        });
+        // ./artist.html?id=
+        const allArtist = document.querySelectorAll(".my-artist");
+        console.log("myartist", allArtist);
+
+        allArtist.forEach((e) => {
+          e.addEventListener("click", function () {
+            const artistIdContainer = e.querySelector("#artist-id");
+            const artistId = artistIdContainer.innerText;
+            if (window.innerWidth < 768) {
+              window.open(`album.html?id=${artistId}`, "_blank");
+            } else {
+              container.innerHTML = `
+              <main>
+              <div id="artist-container" class="container-fluid">
+                <div class="row" id="artist-placeholder">
+                  <div class="col col-12 d-flex flex-row justify-content-center my-4">
+                    <!--  ARTIST IMAGE -->
+                    <img
+                      src="assets/imgs/search/image-1.jpeg"
+                      alt="Artist Cover"
+                      id="img"
+                      class="rounded-circle"
+                    />
+                  </div>
+        
+                  <div class="col col-10 ps-5">
+                    <!--  ARTIST INFORMATION  -->
+                    <h5 class="text-white">Overmono</h5>
+                    <p class="text-secondary">991.764 ascoltatori mensili</p>
+                  </div>
+        
+                  <div class="col col-12 ps-5">
+                    <!--  FOLLOWING SHARING AND PLAY ICONS  -->
+                    <div
+                      class="row d-flex flex-row justify-content-between align-items-center"
+                    >
+                      <div class="col">
+                        <button
+                          type="button"
+                          class="btn btn-outline-light rounded-pill py-1 px-3"
+                        >
+                          Segui
+                        </button>
+        
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="35"
+                          fill="grey"
+                          class="bi bi-share mx-2"
+                          viewBox="0 0 16 16"
+                          id="share"
+                        >
+                          <path
+                            d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="35"
+                          fill="grey"
+                          class="bi bi-three-dots-vertical"
+                          viewBox="0 0 16 16"
+                          id="more-info"
+                        >
+                          <path
+                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                          />
+                        </svg>
+                      </div>
+        
+                      <div class="col text-end">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="50"
+                          height="65"
+                          fill="#1DB954"
+                          class="bi bi-play-circle-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- TRACKLIST------------------------------------------------------------------------------------------- -->
+              <div id="tracks-container" class="container-fluid">
+                <h5 class="text-white ps-4 pt-5">Popolari</h5>
+                <div id="tracks-placeholder">
+                  <div class="row mt-5 d-flex flex-row align-items-center ps-5">
+                    <div class="col col-1" id="position">
+                      <p class="text-white align-middle">1</p>
+                    </div>
+        
+                    <div class="col col-10" id="track-title">
+                      <h6 class="text-white mb-0">Good Lies</h6>
+                      <p class="text-secondary">4.020.635</p>
+                    </div>
+        
+                    <div class="col col-1 p-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="40"
+                        fill="white"
+                        class="bi bi-three-dots-vertical"
+                        viewBox="0 0 16 16"
+                        id="more-info"
+                      >
+                        <path
+                          d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+        
+                  <div class="row mt-1 d-flex flex-row align-items-center ps-5">
+                    <div class="col col-1" id="position">
+                      <!-- <p class="text-white align-middle">2</p> -->
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="#1DB954"
+                      >
+                        <rect
+                          class="eq-bar eq-bar--1"
+                          x="4"
+                          y="4"
+                          width="3.7"
+                          height="8"
+                        />
+                        <rect
+                          class="eq-bar eq-bar--2"
+                          x="10.2"
+                          y="4"
+                          width="3.7"
+                          height="16"
+                        />
+                        <rect
+                          class="eq-bar eq-bar--3"
+                          x="16.3"
+                          y="4"
+                          width="3.7"
+                          height="11"
+                        />
+                      </svg>
+                    </div>
+        
+                    <div class="col col-10" id="track-title">
+                      <h6 class="text-white mb-0">Is U</h6>
+                      <p class="text-secondary">3.945.367</p>
+                    </div>
+        
+                    <div class="col col-1 p-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="40"
+                        fill="white"
+                        class="bi bi-three-dots-vertical"
+                        viewBox="0 0 16 16"
+                        id="more-info"
+                      >
+                        <path
+                          d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ALBUM------------------------------------------------------------------------------------------- -->
+              <div class="row mt-5 d-flex flex-row align-items-center ps-5">
+                <h5 class="text-white">Album</h5>
+                <div id="carouselAlbum" class="carousel slide">
+                  <div id="carouselAlbum" class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div id="first-item" class="row">
+                        <div class="col-3 carousel-placeHolder">
+                          <img
+                            src="assets/imgs/main/image-1.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                          />
+                          <p class="text-white text-center mb-0">Good Lies</p>
+                          <p class="text-secondary text-center">
+                            Album &centerdot; 2023
+                          </p>
+                        </div>
+                        <div class="col-3 carousel-placeHolder">
+                          <img
+                            src="assets/imgs/main/image-1.jpg"
+                            class="d-block w-100"
+                            alt="..."
+                          />
+                          <p class="text-white text-center mb-0">Good Lies</p>
+                          <p class="text-secondary text-center">
+                            Album &centerdot; 2023
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselAlbum"
+                    data-bs-slide="prev"
+                  >
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselAlbum"
+                    data-bs-slide="next"
+                  >
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </main>
+        
+            <!-- ASIDE -->
+            <aside
+              class="container-fluid my-5 d-flex w-100 justify-content-between w-100"
+            >
+              <div class="row text-secondary w-100">
+                <div class="col d-md-flex mx-5">
+                  <div id="azienda" class="mx-4">
+                    <h6 class="text-light">Azienda</h6>
+                    <ul class="p-0 mt-2">
+                      <li>Chi siamo</li>
+                      <li>Opportunità di lavoro</li>
+                      <li>For the Record</li>
+                    </ul>
+                  </div>
+                  <div id="comunity" class="mx-4">
+                    <h6 class="text-light">Community</h6>
+                    <ul class="p-0 mt-2">
+                      <li>Per artisti</li>
+                      <li>Sviluppatori</li>
+                      <li>Pubblicità</li>
+                      <li>Investitori</li>
+                      <li>Venditori</li>
+                      <li>Spotify for Work</li>
+                    </ul>
+                  </div>
+        
+                  <div id="link-utily" class="mx-4">
+                    <h6 class="text-light">Link utili</h6>
+                    <ul class="p-0 mt-2">
+                      <li>Assistenza</li>
+                      <li>App per cellulare gratuita</li>
+                      <li>Diritti del consumatore</li>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  id="social-link-icon"
+                  class="col d-flex justify-content-center justify-content-md-end text-light"
+                >
+                  <div class="mx-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="30"
+                      height="30"
+                      fill="currentColor"
+                      class="bi bi-instagram"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="mx-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="30"
+                      height="30"
+                      fill="currentColor"
+                      class="bi bi-twitter"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="mx-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="30"
+                      height="30"
+                      fill="currentColor"
+                      class="bi bi-facebook"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <!-- FOOTER -->
+            <footer class="mt-5">
+              <div class="container-fluid d-flex justify-content-between">
+                <div class="mx-5 mb-5">
+                  <span class="mx-2 text-white">Informazioni legali</span>
+                  <span class="mx-2 text-white">Centro sulla privacy</span>
+                  <span class="mx-2 text-white">Informazioni sulla privacy</span>
+                  <span class="mx-2 text-white">Impostazioni cookie</span>
+                  <span class="mx-2 text-white">Info annunci</span>
+                  <span class="mx-2 text-white">Accessibilità</span>
+                </div>
+                <div>
+                  <span id="copy" class="text-white">&copy; Spotify AB</span>
+                </div>
+              </div>
+            </footer>
+              
+              `;
+
+              artistClick(artistId);
+            }
+          });
         });
 
         const allAlbum = document.querySelectorAll(".my-album");
