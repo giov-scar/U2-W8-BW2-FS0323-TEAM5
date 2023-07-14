@@ -12,7 +12,7 @@ const playIconContainer = document.getElementById("play-fixed");
 const timelineIndicator = document.querySelector(".timeline-indicator");
 const playerImgContainer = document.getElementById("album");
 const playerTitleContainer = document.getElementById("player-track-title");
-
+let equalContainer;
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
   let canvas = document.createElement("canvas");
@@ -323,7 +323,7 @@ fill="#1DB954"
         track.addEventListener("click", function () {
           let audio = this.querySelector("#audio");
           const allAudio = document.querySelectorAll("audio");
-          let equalContainer = this.querySelector("#position");
+          equalContainer = this.querySelector("#position");
           console.log(equalContainer);
           if (audioSelected === audio) {
             if (audio.paused) {
@@ -387,6 +387,9 @@ fill="#1DB954"
         if (audioSelected === undefined) {
           let firstAudio = document.querySelector("audio");
           let firstTrackInfo = firstAudio.parentElement.parentElement;
+
+          equalContainer = firstTrackInfo.querySelector("#position");
+
           let firstalbumImgUrl =
             firstTrackInfo.querySelector("#img-album-url").innerText;
           let firstTitle = firstTrackInfo.querySelector("h6").innerText;
@@ -407,24 +410,28 @@ fill="#1DB954"
 
           if (firstAudio.paused) {
             firstAudio.play();
+            addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
           } else {
             firstAudio.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
+            removeEqualizer(equalContainer);
           }
 
           return (audioSelected = firstAudio);
         } else {
           if (audioSelected.paused) {
             audioSelected.play();
+            addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
           } else {
             audioSelected.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
+            removeEqualizer(equalContainer);
           }
         }
       });
@@ -434,12 +441,14 @@ fill="#1DB954"
         if (audioSelected.paused) {
           console.log(audioSelected);
           audioSelected.play();
+          addEqualizer(equalContainer);
           timelineIndicator.style.animationPlayState = "running";
           addPauseIcon(playIconContainer);
         } else {
           audioSelected.pause();
           timelineIndicator.style.animationPlayState = "paused";
           addPlayIcon(playIconContainer);
+          removeEqualizer(equalContainer);
         }
       });
     })
