@@ -5,16 +5,137 @@ const albumUrl = "https://striveschool-api.herokuapp.com/api/deezer/album";
 const searchUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 
 const addressBarContent = new URLSearchParams(location.search);
+
 const artistId = addressBarContent.get("id");
+
+const playIconContainer = document.getElementById("play-fixed");
+
+const timelineIndicator = document.querySelector(".timeline-indicator");
+
+const playerImgContainer = document.getElementById("album")
+
+const playerTitleContainer = document.getElementById("player-track-title")
+
+const carouselAlbum= document.getElementById('carouselAlbum')
+// crea un canvas con l'immagine e ne ritorno il context 2d
+const draw = function (img) {
+  let canvas = document.createElement("canvas");
+  let c = canvas.getContext("2d");
+  c.width = canvas.width = img.clientWidth;
+  c.height = canvas.height = img.clientHeight;
+  c.clearRect(0, 0, c.width, c.height);
+  c.drawImage(img, 0, 0, img.clientWidth, img.clientHeight);
+  return c;
+};
+
+// scompone pixel per pixel e ritorna un oggetto con una mappa della loro frequenza nell'immagine
+const getColors = function (c) {
+  let col,
+    colors = {};
+  let pixels, r, g, b, a;
+  r = g = b = a = 0;
+  pixels = c.getImageData(0, 0, c.width, c.height);
+  for (let i = 0, data = pixels.data; i < data.length; i += 4) {
+    r = data[i];
+    g = data[i + 1];
+    b = data[i + 2];
+    a = data[i + 3];
+    if (a < 255 / 2) continue;
+    col = rgbToHex(r, g, b);
+    if (!colors[col]) colors[col] = 0;
+    colors[col]++;
+  }
+  return colors;
+};
+
+// trova il colore più ricorrente data una mappa di frequenza dei colori
+const findMostRecurrentColor = function (colorMap) {
+  let highestValue = 0;
+  let mostRecurrent = null;
+  for (const hexColor in colorMap) {
+    if (colorMap[hexColor] > highestValue) {
+      mostRecurrent = hexColor;
+      highestValue = colorMap[hexColor];
+    }
+  }
+  return mostRecurrent;
+};
+
+// converte un valore in rgb a un valore esadecimale
+const rgbToHex = function (r, g, b) {
+  if (r > 255 || g > 255 || b > 255) {
+    throw "Invalid color component";
+  } else {
+    return ((r << 16) | (g << 8) | b).toString(16);
+  }
+};
+
+// inserisce degli '0' se necessario davanti al colore in esadecimale per renderlo di 6 caratteri
+const pad = function (hex) {
+  return ("000000" + hex).slice(-6);
+};
+
+const start = function () {
+  // prendo il riferimento all'immagine del dom
+  let imgReference = document.querySelector("#img-album-color");
+  console.log(imgReference);
+  // creo il context 2d dell'immagine selezionata
+  let context = draw(imgReference);
+
+  // creo la mappa dei colori più ricorrenti nell'immagine
+  let allColors = getColors(context);
+
+  // trovo colore più ricorrente in esadecimale
+  let mostRecurrent = findMostRecurrentColor(allColors);
+
+  // se necessario, aggiunge degli '0' per rendere il risultato un valido colore esadecimale
+  let mostRecurrentHex = pad(mostRecurrent);
+
+  // console.log del risultato
+  console.log(mostRecurrentHex);
+  return mostRecurrentHex;
+
+  //   let containerDiv = document.getElementById("mediumBg");
+  //   containerDiv.style.background = `#${mostRecurrentHex}`;
+};
+
+const addPauseIcon = function (element) {
+  element.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" 
+  fill="currentColor" class="bi bi-pause" viewBox="0 0 16 16">
+  <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 
+  .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+  </svg>`;
+};
+
+const addPlayIcon = function (element) {
+  element.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+  class="bi bi-play-fill" viewBox="0 0 16 16">
+  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+  </svg>
+  `;
+};
+
+const resetAnimation = function (el) {
+  el.style.animation = "none";
+  el.offsetHeight; /* trigger reflow */
+  el.style.animation = null;
+};
+
 
 const tracksContainer = document.getElementById("tracks-container");
 const artistDataContainer = document.getElementById("artist-container");
 
 const hidePlaceholder = function () {
   const tracksPlaceholder = document.getElementById("tracks-placeholder");
-  const artistPlaceholder = document.getElementById("mediumBg");
+  const artistPlaceholder = document.getElementById("artist-placeholder");
+  const carouselPlaceHolder = document.querySelectorAll(".carousel-placeHolder");
   tracksPlaceholder.classList.add("d-none");
   artistPlaceholder.classList.add("d-none");
+  carouselPlaceHolder.forEach(e=>{
+    e.remove()
+  });
 };
 
 if (artistId) {
@@ -37,9 +158,10 @@ if (artistId) {
       <div class="col col-12 d-flex flex-row justify-content-center my-4">
         <!--  ARTIST IMAGE -->
         <img
+        id='img-album-color'
           src="${data.picture_medium}  "  
           alt="Artist Cover"
-          id="img"
+          crossorigin='anonymous'
           class="rounded-circle"
         />
       </div>
@@ -92,7 +214,7 @@ if (artistId) {
       
           <div class="col text-end">
           <svg
-              id="play-button"
+              id="play"
               xmlns="http://www.w3.org/2000/svg"
               width="50"
               height="65"
@@ -110,6 +232,16 @@ if (artistId) {
       `;
       artistDataContainer.appendChild(newRow);
 
+      imgAlbumColor = document.getElementById("img-album-color");
+
+      imgAlbumColor.addEventListener("load", () => {
+        let mediumColor = start();
+
+        const bgContainer = document.getElementById("mediumBg");
+
+        bgContainer.style.background = `linear-gradient(0deg, rgba(0,0,0,1) 0%, #${mediumColor} 100%)`;
+      });
+
       fetch(data.tracklist)
         .then((response) => {
           if (response.ok) {
@@ -121,8 +253,9 @@ if (artistId) {
         .then((tracks) => {
           let myTracks = tracks.data;
           console.log(myTracks);
-          let index = 1;
-          myTracks.forEach((e) => {
+          let numberIndex = 1;
+          myTracks.forEach((e,index) => {
+            console.log(index);
             let newCol = document.createElement("div");
             newCol.classList.add(
               "row",
@@ -147,7 +280,7 @@ if (artistId) {
 
             </div>
             <div class="col col-1" id="position">
-            <p class="text-white align-middle">${index}</p>
+            <p class="text-white align-middle">${numberIndex}</p>
             </div>
 
             <div class="col col-10" id="track-title">
@@ -171,94 +304,266 @@ if (artistId) {
             </svg>
             </div> 
             `;
-            index += 1;
+            numberIndex += 1;
             tracksContainer.appendChild(newCol);
+if (index<3){
+let carouselItem = document.getElementById ('first-item')
+let carousleAlbumTitle=e.album.title
+let carousleAlbumImg=e.album.cover_medium
+let newCarouselItem = document.createElement ('div')
+newCarouselItem.classList.add ('col-3')
+newCarouselItem.innerHTML=`
+<img
+src="${carousleAlbumImg}"
+class="d-block w-100"
+alt="${carousleAlbumTitle}"
+/>
+<p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+<p class="text-secondary text-center">
+Album
+</p>
+</div>
+`
+carouselItem.appendChild(newCarouselItem)
+}
+else if (index>=3 && index <6){
+let secondCarouselItem = document.getElementById ('second-item')
+
+if(secondCarouselItem === null){
+let newCarousel = document.createElement('div')
+newCarousel.classList.add('carousel-item')
+newCarousel.innerHTML=`<div id="second-item" class="row"></div>`
+carouselAlbum.appendChild (newCarousel)
+
+secondCarouselItem = document.getElementById ('second-item')
+
+  let carousleAlbumTitle=e.album.title
+  let carousleAlbumImg=e.album.cover_medium
+  let newCarouselItem = document.createElement ('div')
+  newCarouselItem.classList.add ('col-3')
+  newCarouselItem.innerHTML=`
+  <img
+  src="${carousleAlbumImg}"
+  class="d-block w-100"
+  alt="${carousleAlbumTitle}"
+  />
+  <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+  <p class="text-secondary text-center">
+  Album
+  </p>
+  </div>
+  `
+  secondCarouselItem.appendChild(newCarouselItem)
+}
+else{
+  let carousleAlbumTitle=e.album.title
+  let carousleAlbumImg=e.album.cover_medium
+  let newCarouselItem = document.createElement ('div')
+  newCarouselItem.classList.add ('col-3')
+  newCarouselItem.innerHTML=`
+  <img
+  src="${carousleAlbumImg}"
+  class="d-block w-100"
+  alt="${carousleAlbumTitle}"
+  />
+  <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+  <p class="text-secondary text-center">
+  Album
+  </p>
+  </div>
+  `
+  secondCarouselItem.appendChild(newCarouselItem)
+
+
+}
+
+}else if (index>=6 && index <9){
+
+  let thirdCarouselItem = document.getElementById ('second-item')
+
+  if(thirdCarouselItem === null){
+  let newCarousel = document.createElement('div')
+  newCarousel.classList.add('carousel-item')
+  newCarousel.innerHTML=`<div id="third-item" class="row"></div>`
+  carouselAlbum.appendChild (newCarousel)
+  
+  thirdCarouselItem = document.getElementById ('third-item')
+  
+    let carousleAlbumTitle=e.album.title
+    let carousleAlbumImg=e.album.cover_medium
+    let newCarouselItem = document.createElement ('div')
+    newCarouselItem.classList.add ('col-3')
+    newCarouselItem.innerHTML=`
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `
+    thirdCarouselItem.appendChild(newCarouselItem)
+  }
+  else{
+    let carousleAlbumTitle=e.album.title
+    let carousleAlbumImg=e.album.cover_medium
+    let newCarouselItem = document.createElement ('div')
+    newCarouselItem.classList.add ('col-3')
+    newCarouselItem.innerHTML=`
+    <img
+    src="${carousleAlbumImg}"
+    class="d-block w-100"
+    alt="${carousleAlbumTitle}"
+    />
+    <p class="text-white text-center mb-0">${carousleAlbumTitle}</p>
+    <p class="text-secondary text-center">
+    Album
+    </p>
+    </div>
+    `
+    thirdCarouselItem.appendChild(newCarouselItem)
+  
+  
+  }
+
+}
+
+
           });
           // select play button
 
-          const mainPlayButton = document.getElementById("play-button");
-          const playBottom = document.getElementById("play-fixed");
-
-          const fixedPalyer = document.getElementById("album");
+          const mainPlayButton = document.getElementById("play");
+          let allTracks = document.querySelectorAll(".play-tracks");
           const playerBottom = document.getElementById("icon");
-
+    
+          
+         
+    
+          // select all div of track and add an add event listner
           let audioSelected;
           console.log("audioselected", audioSelected);
-          // add play pause function on all tracks
-          let allTracks = document.querySelectorAll(".play-tracks");
+          
+         
           allTracks.forEach((track) => {
             track.addEventListener("click", function () {
-              let albumImgUrl = this.querySelector("#img-album-url").innerText;
-              let title = this.querySelector("h6").innerText;
-              playerBottom.classList.remove("d-none");
-              fixedPalyer.innerHTML = `
-                <div>
-               <img src="${albumImgUrl}" alt="album-img" srcset="">
-                </div>
-                <div>
-                <span class='text-white'>${title}</span>
-                </div>
-                <div id="bar"></div>
-                `;
-
               let audio = this.querySelector("#audio");
               const allAudio = document.querySelectorAll("audio");
+              console.log("audioselected", audioSelected);
+              if (audioSelected===audio){
+                if (audio.paused) {
+                  
+                  audio.play();
+                  timelineIndicator.style.animationPlayState = "running";
+                  addPauseIcon(playIconContainer);
+                } else {
+                  audio.pause();
+                  timelineIndicator.style.animationPlayState = "paused";
+                  addPlayIcon(playIconContainer);
+                }
+              }
+              else{
+              resetAnimation(timelineIndicator);
+              let albumImgUrl = this.querySelector("#img-album-url").innerText;
+              let trackTitle = this.querySelector("h6").innerText;
+              playerImgContainer.innerHTML = `<img
+              src=${albumImgUrl }
+              alt="artist-photo"
+              class="rounded-circle mb-3"
+            />`
+              playerTitleContainer.innerHTML =`${trackTitle}`
+
+              let mediumColor = start();
+              // add a background color to audio player
+              playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
+    
+              playerBottom.classList.remove("d-none");
+    
+              // active audio tag selcted on click
+              
               if (audio.paused) {
                 allAudio.forEach((e) => {
                   e.pause();
                   e.currentTime = 0;
                 });
                 audio.play();
+                timelineIndicator.style.animationPlayState = "running";
+                addPauseIcon(playIconContainer);
               } else {
                 audio.pause();
+                timelineIndicator.style.animationPlayState = "paused";
+                addPlayIcon(playIconContainer);
               }
-
+    
               return (audioSelected = audio);
+            }
             });
+            
           });
+    
+          //  function to play pause at main play button
           console.log("audioselected", audioSelected);
 
           mainPlayButton.addEventListener("click", () => {
+            // start fisrt track on-click
+    
             if (audioSelected === undefined) {
               let firstAudio = document.querySelector("audio");
               let firstTrackInfo = firstAudio.parentElement.parentElement;
-              console.log(firstTrackInfo);
-
               let firstalbumImgUrl =
                 firstTrackInfo.querySelector("#img-album-url").innerText;
               let firstTitle = firstTrackInfo.querySelector("h6").innerText;
+              playerImgContainer.innerHTML = `<img
+              src=${firstalbumImgUrl }
+              alt="artist-photo"
+              class="rounded-circle mb-3"
+            />`
+              playerTitleContainer.innerHTML =`${firstTitle}`
+              let mediumColor = start();
+    
+              playerBottom.style.background = `linear-gradient(0deg,#${mediumColor} 0%, #${mediumColor} 100%)`;
+    
               playerBottom.classList.remove("d-none");
-              fixedPalyer.innerHTML = `
-                <div>
-               <img src="${firstalbumImgUrl}" alt="album-img" srcset="">
-                </div>
-                <div>
-                <span class='text-white'>${firstTitle}</span>
-                </div>
-                <div id="bar"></div>
-                `;
+    
+              // selecet icon play container
+    
               if (firstAudio.paused) {
                 firstAudio.play();
+                timelineIndicator.style.animationPlayState = "running";
+                addPauseIcon(playIconContainer);
               } else {
                 firstAudio.pause();
+                timelineIndicator.style.animationPlayState = "paused";
+                addPlayIcon(playIconContainer);
               }
+    
               return (audioSelected = firstAudio);
             } else {
               if (audioSelected.paused) {
                 audioSelected.play();
+                timelineIndicator.style.animationPlayState = "running";
+                addPauseIcon(playIconContainer);
               } else {
                 audioSelected.pause();
+                timelineIndicator.style.animationPlayState = "paused";
+                addPlayIcon(playIconContainer);
               }
             }
           });
-          console.log("audioselected", audioSelected);
+          // selecet icon play container
 
-          playBottom.addEventListener("click", () => {
+          playIconContainer.addEventListener("click", () => {
             if (audioSelected.paused) {
               console.log(audioSelected);
               audioSelected.play();
+              timelineIndicator.style.animationPlayState = "running";
+              addPauseIcon(playIconContainer);
             } else {
               audioSelected.pause();
+              timelineIndicator.style.animationPlayState = "paused";
+              addPlayIcon(playIconContainer);
             }
           });
         })
