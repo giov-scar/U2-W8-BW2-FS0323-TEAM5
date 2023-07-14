@@ -9,7 +9,7 @@ body {
   font-size: 1.5em;
   font-weight: bold;
   width: 100%;
-
+  border: 1px solid white;
   background-color: black !important;
 }
 
@@ -227,7 +227,8 @@ a {
   #search-input {
     border-radius: 40px;
     padding: 20px 30px;
-    border: none;
+
+    border: 1px solid white;
   }
 
   #search-button-container {

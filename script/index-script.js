@@ -19,7 +19,13 @@ let searchButton1 = document.getElementById("search");
 searchButton1.addEventListener("click", function () {
   let container = document.getElementById("cerca");
 
-  container.innerHTML = `   <div id="cerca" class="bg-dark">
+  // Verifica la larghezza dello schermo
+  if (window.innerWidth < 768) {
+    // Apri una nuova finestra su schermi mobili
+    window.open("search.html", "_blank");
+  } else {
+    // Rimani nella stessa pagina su schermi medium e desktop
+    container.innerHTML = `   <div id="cerca" class="bg-dark">
     <h1>Cerca</h1>
   </div>
   <div class="container bg-dark">
@@ -850,6 +856,7 @@ searchButton1.addEventListener("click", function () {
       </div>
     </div>
   </div>`;
+  }
 
   //   let arrow = document.getElementById("arrow")
   // arrow.addEventListener("click", function(){
