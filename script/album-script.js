@@ -10,10 +10,8 @@ const albumId = addressBarContent.get("id");
 const playIconContainer = document.getElementById("play-fixed");
 
 const timelineIndicator = document.querySelector(".timeline-indicator");
-const playerImgContainer = document.getElementById("album")
-const playerTitleContainer = document.getElementById("player-track-title")
-
-
+const playerImgContainer = document.getElementById("album");
+const playerTitleContainer = document.getElementById("player-track-title");
 
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
@@ -97,7 +95,6 @@ const start = function () {
   //   containerDiv.style.background = `#${mostRecurrentHex}`;
 };
 
-
 const addPauseIcon = function (element) {
   element.innerHTML = `
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" 
@@ -120,6 +117,32 @@ const resetAnimation = function (el) {
   el.style.animation = "none";
   el.offsetHeight; /* trigger reflow */
   el.style.animation = null;
+};
+
+const addEqualizer = function (element) {
+  let number = element.querySelector("p");
+  let newDiv = element.querySelector("#equal");
+  number.classList.add("d-none");
+  newDiv.classList.remove("d-none");
+};
+const removeEqualizer = function (element) {
+  let number = element.querySelector("p");
+
+  number.classList.remove("d-none");
+  let equalizer = element.querySelector("#equal");
+
+  equalizer.classList.add("d-none");
+};
+
+const clearEqualizer = function () {
+  const allEqualActive = document.querySelectorAll("#equal");
+  const equalizerNumber = document.querySelectorAll("#equalizer-number");
+  equalizerNumber.forEach((e) => {
+    e.classList.remove("d-none");
+  });
+  allEqualActive.forEach((e) => {
+    e.classList.add("d-none");
+  });
 };
 
 if (albumId) {
@@ -227,7 +250,38 @@ if (albumId) {
 
         </div>
             <div class="col col-1" id="position">
-              <p class="text-white align-middle">${index}</p>
+              <p id='equalizer-number' class="text-white align-middle">${index}</p>
+              <div id='equal' class='d-none'>
+  <svg
+xmlns="http://www.w3.org/2000/svg"
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="#1DB954"
+>
+<rect
+  class="eq-bar eq-bar--1"
+  x="4"
+  y="4"
+  width="3.7"
+  height="8"
+/>
+<rect
+  class="eq-bar eq-bar--2"
+  x="10.2"
+  y="4"
+  width="3.7"
+  height="16"
+/>
+<rect
+  class="eq-bar eq-bar--3"
+  x="16.3"
+  y="4"
+  width="3.7"
+  height="11"
+/>
+</svg>
+</div>
             </div>
 
             <div class="col col-10" id="track-title">
@@ -269,27 +323,33 @@ if (albumId) {
         track.addEventListener("click", function () {
           let audio = this.querySelector("#audio");
           const allAudio = document.querySelectorAll("audio");
+          let equalContainer = this.querySelector("#position");
+          console.log(equalContainer);
           if (audioSelected === audio) {
             if (audio.paused) {
               audio.play();
+              addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
             } else {
               audio.pause();
+              removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
             }
           } else {
+            clearEqualizer();
             resetAnimation(timelineIndicator);
             let albumImgUrl = this.querySelector("#img-album-url").innerText;
             let trackTitle = this.querySelector("h6").innerText;
             console.log(trackTitle);
+
             playerImgContainer.innerHTML = `<img
-            src=${albumImgUrl }
+            src=${albumImgUrl}
             alt="artist-photo"
             class="rounded-circle mb-3"
-          />`
-            playerTitleContainer.innerHTML =`${trackTitle}`
+          />`;
+            playerTitleContainer.innerHTML = `${trackTitle}`;
 
             let mediumColor = start();
             // add a background color to audio player
@@ -304,10 +364,12 @@ if (albumId) {
                 e.currentTime = 0;
               });
               audio.play();
+              addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
             } else {
               audio.pause();
+              removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
             }
@@ -329,11 +391,11 @@ if (albumId) {
             firstTrackInfo.querySelector("#img-album-url").innerText;
           let firstTitle = firstTrackInfo.querySelector("h6").innerText;
           playerImgContainer.innerHTML = `<img
-          src=${firstalbumImgUrl }
+          src=${firstalbumImgUrl}
           alt="artist-photo"
           class="rounded-circle mb-3"
-        />`
-          playerTitleContainer.innerHTML =`${firstTitle}`
+        />`;
+          playerTitleContainer.innerHTML = `${firstTitle}`;
 
           let mediumColor = start();
 
