@@ -128,18 +128,6 @@ const mysearch = function () {
         </a>
         
         `;
-        // <div class="card h-100">
-  {/* <img src="${item.imageUrl}" class="card-img-top" alt="concert placeholder image" style="object-fit: cover; height: 200px;">
-  <div class="card-body d-flex flex-column">
-    <h5 class="card-title">${item.name}</h5>
-    <p class="card-text">${item.description}</p>
-    <div class="mt-auto d-flex justify-content-between align-items-end">
-      <p class="card-text fst-italic">${item.brand}</p>
-      <p class="card-text fw-bold">&#36;${item.price}</p>
-    </div>
-    <a href="./detail.html?id=${item._id}" class="btn btn-primary mt-2">Scopri di più</a>
-  </div>
-</div> */}
 
         albumResultContainer.appendChild(newAlbum);
       });
