@@ -103,11 +103,11 @@ const mysearch = function () {
         newAlbum.innerHTML = `
         <a href="./album.html?id=${albumId}">
         <div id="album" class="row bg-black">
-          <div class="col d-none d-md-block p-2">
-            <div class="card  mt-4">
-              <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}"  />
+          <div class="col d-none d-md-block">
+            <div class="card">
+              <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}" />
               <div class="card-body ">
-                <h5 class="card-title" style="object-fit: cover; height: 60px;">${nameAlbum}</h5>
+                <h5 class="card-title">${nameAlbum}</h5>
               </div>
             </div>
           </div>
@@ -126,7 +126,6 @@ const mysearch = function () {
         </div>
       </div>
         </a>
-        
         `;
 
         albumResultContainer.appendChild(newAlbum);
