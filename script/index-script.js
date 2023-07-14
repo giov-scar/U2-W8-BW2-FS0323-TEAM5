@@ -25,6 +25,7 @@ searchButton1.addEventListener("click", function () {
     window.open("search.html", "_blank");
   } else {
     // Rimani nella stessa pagina su schermi medium e desktop
+    container.classList.add("overflow-y-auto");
     container.innerHTML = `   <div id="cerca" class="bg-dark">
     <h1>Cerca</h1>
   </div>
