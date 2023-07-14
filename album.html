@@ -121,13 +121,14 @@
         <div class="container-fluid">
           <div class="row" id="mediumBg">
             <div
-              class="col col-12 mt-2 d-flex align-content-center justify-content-between"
+              class="col col-12 mt-2 d-flex align-content-center justify-content-between d-none d-md-flex"
             >
               <div id="buttons-search-container" class="d-flex col col-2">
                 <div class="buttons-search ms-0 me-1">
                   <a
                     href="javascript:history.go(-1)"
                     onMouseOver="self.status=document.referrer;return true"
+                    onclick="history.back();"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -147,6 +148,7 @@
                   <a
                     href="javascript:history.go(+1)"
                     onMouseOver="self.status=document.referrer;return true"
+                    onclick="history.forward();"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
