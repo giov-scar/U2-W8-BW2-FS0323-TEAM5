@@ -105,11 +105,11 @@ searchButton1.addEventListener("click", function () {
     <h2 id="sfoglia" class="my-5 text-light">Sfoglia tutto</h2>
   </div>
   <div>
-    <div class="container-fluid bg-dark">
+    <div class="container-fluid bg-dark ">
       <div id="images-grid">
         <div
           id="hidden"
-          class="row row-cols-12 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-auto justify-content-center g-3"
+          class="row row-cols-12 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-auto justify-content-center  g-3"
         >
           <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ"
