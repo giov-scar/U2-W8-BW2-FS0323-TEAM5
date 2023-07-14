@@ -373,7 +373,6 @@ fill="#1DB954"
               removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
-              console.log(mainPlayButton.parentElement)
               addGreenPlay(greenButton)
             }
           } else {
