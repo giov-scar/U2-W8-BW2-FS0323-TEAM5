@@ -1456,7 +1456,10 @@ searchButton1.addEventListener("click", function () {
           e.addEventListener("click", function () {
             const informationContainer = e.querySelector("#album-id");
             const albumId = informationContainer.innerText;
-            container.innerHTML = `
+            if (window.innerWidth < 768) {
+              window.open(`album.html?id=${albumId}`, "_blank");
+            } else {
+              container.innerHTML = `
             <main>
             <div class="container-fluid">
               <div class="row" id="mediumBg">
@@ -1873,7 +1876,8 @@ searchButton1.addEventListener("click", function () {
             
             
             `;
-            albumClick(albumId);
+              albumClick(albumId);
+            }
           });
         });
 
