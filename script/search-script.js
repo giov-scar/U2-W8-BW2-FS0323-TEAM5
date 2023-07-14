@@ -104,7 +104,7 @@ const mysearch = function () {
         <a href="./album.html?id=${albumId}">
         <div id="album" class="row bg-black">
           <div class="col d-none d-md-block p-2">
-            <div class="card h-100">
+            <div class="card  mt-4">
               <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}"  />
               <div class="card-body ">
                 <h5 class="card-title" style="object-fit: cover; height: 60px;">${nameAlbum}</h5>

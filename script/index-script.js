@@ -105,11 +105,11 @@ searchButton1.addEventListener("click", function () {
     <h2 id="sfoglia" class="my-5 text-light">Sfoglia tutto</h2>
   </div>
   <div>
-    <div class="container-fluid bg-dark ">
+    <div class="container-fluid bg-dark">
       <div id="images-grid">
         <div
           id="hidden"
-          class="row row-cols-12 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-auto justify-content-center  g-3"
+          class="row row-cols-12 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-auto justify-content-center g-3"
         >
           <div class="col" id="card-col">
             <a href="https://youtu.be/dQw4w9WgXcQ"
@@ -856,12 +856,7 @@ searchButton1.addEventListener("click", function () {
   // })
 
   const searchButton = document.getElementById("search-button");
-
-  console.log(searchButton);
-
   const searchInput = document.getElementById("search-input");
-  console.log(searchInput);
-
   const hiddenContainer = document.getElementById("hidden");
   const containerSearchResult = document.getElementById("images-grid");
 
@@ -964,10 +959,10 @@ searchButton1.addEventListener("click", function () {
         <a href="./album.html?id=${albumId}">
         <div id="album-result" class="row">
           <div class="col d-none d-md-block">
-            <div class="card">
+            <div class="card  mt-4">
               <img src="${imageAlbumUrl}" class="card-img-top " alt="${nameAlbum}" />
               <div class="card-body ">
-                <h5 class="card-title">${nameAlbum}</h5>
+                <h5 class="card-title" style="object-fit: cover; height: 60px;">${nameAlbum}</h5>
               </div>
             </div>
           </div>
