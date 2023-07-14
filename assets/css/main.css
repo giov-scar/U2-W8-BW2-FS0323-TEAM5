@@ -53,6 +53,10 @@ main {
   height: 5px !important;
 }
 
+#pausa {
+  background-color: #1DB954 !important;
+}
+
 /* HEART ANIMATION --------------------------------------------------------------------------------------------- */
 * {
   box-sizing: border-box;

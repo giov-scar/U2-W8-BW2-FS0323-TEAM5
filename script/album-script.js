@@ -11,6 +11,9 @@ const timelineIndicator = document.querySelector(".timeline-indicator");
 const playerImgContainer = document.getElementById("album");
 const playerTitleContainer = document.getElementById("player-track-title");
 let equalContainer;
+
+ const greenButton= document.getElementById("play").parentElement
+
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
   let canvas = document.createElement("canvas");
@@ -110,6 +113,41 @@ const addPlayIcon = function (element) {
   </svg>
   `;
 };
+const addGreenPause = function (element) {
+  element.innerHTML = `
+   <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="30"
+  height="30"
+  fill="currentColor"
+  class="bi bi-pause bg-success rounded-5 text-black"
+  style="background-color: #1db954 !important;"
+  id="pausa"
+  viewBox="0 0 16 16"
+>
+  <path
+    d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"
+  />
+</svg> `
+};
+
+const addGreenPlay = function (element) {
+  element.innerHTML = `
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="50"
+height="65"
+fill="#1DB954"
+class="bi bi-play-circle-fill"
+viewBox="0 0 16 16"
+id="play"
+>
+<path
+  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
+/>
+</svg>
+`
+}
 
 const resetAnimation = function (el) {
   el.style.animation = "none";
@@ -329,11 +367,14 @@ fill="#1DB954"
               addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
+              addGreenPause( greenButton)
             } else {
               audio.pause();
               removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
+              console.log(mainPlayButton.parentElement)
+              addGreenPlay(greenButton)
             }
           } else {
             clearEqualizer();
@@ -365,11 +406,13 @@ fill="#1DB954"
               addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
+              addGreenPause(greenButton)
             } else {
               audio.pause();
               removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
+              addGreenPlay(greenButton)
             }
 
             return (audioSelected = audio);
@@ -411,10 +454,12 @@ fill="#1DB954"
             addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
+            addGreenPause(greenButton)
           } else {
             firstAudio.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
+            addGreenPlay(greenButton)
             removeEqualizer(equalContainer);
           }
 
@@ -425,10 +470,12 @@ fill="#1DB954"
             addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
+            addGreenPause(greenButton)
           } else {
             audioSelected.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
+            addGreenPlay(greenButton)
             removeEqualizer(equalContainer);
           }
         }
@@ -442,10 +489,12 @@ fill="#1DB954"
           addEqualizer(equalContainer);
           timelineIndicator.style.animationPlayState = "running";
           addPauseIcon(playIconContainer);
+          addGreenPause(greenButton)
         } else {
           audioSelected.pause();
           timelineIndicator.style.animationPlayState = "paused";
           addPlayIcon(playIconContainer);
+          addGreenPlay(greenButton)
           removeEqualizer(equalContainer);
         }
       });
