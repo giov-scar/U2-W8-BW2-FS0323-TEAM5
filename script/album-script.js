@@ -12,7 +12,7 @@ const playerImgContainer = document.getElementById("album");
 const playerTitleContainer = document.getElementById("player-track-title");
 let equalContainer;
 
- const greenButton= document.getElementById("play").parentElement
+const greenButton = document.getElementById("play").parentElement;
 
 // crea un canvas con l'immagine e ne ritorno il context 2d
 const draw = function (img) {
@@ -122,13 +122,13 @@ const addGreenPause = function (element) {
   fill="currentColor"
   class="bi bi-pause bg-success rounded-5 text-black"
   style="background-color: #1db954 !important;"
-  id="pausa"
+  id="play"
   viewBox="0 0 16 16"
 >
   <path
     d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"
   />
-</svg> `
+</svg> `;
 };
 
 const addGreenPlay = function (element) {
@@ -146,8 +146,8 @@ id="play"
   d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"
 />
 </svg>
-`
-}
+`;
+};
 
 const resetAnimation = function (el) {
   el.style.animation = "none";
@@ -350,7 +350,7 @@ fill="#1DB954"
       // add play pause function on all tracks
 
       const playerBottom = document.getElementById("icon");
-      const mainPlayButton = document.getElementById("play");
+      const mainPlayButton = document.getElementById("new-play");
 
       // select all div of track and add an add event listner
       let allTracks = document.querySelectorAll(".play");
@@ -367,13 +367,13 @@ fill="#1DB954"
               addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
-              addGreenPause( greenButton)
+              addGreenPause(greenButton);
             } else {
               audio.pause();
               removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
-              addGreenPlay(greenButton)
+              addGreenPlay(greenButton);
             }
           } else {
             clearEqualizer();
@@ -405,13 +405,13 @@ fill="#1DB954"
               addEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "running";
               addPauseIcon(playIconContainer);
-              addGreenPause(greenButton)
+              addGreenPause(greenButton);
             } else {
               audio.pause();
               removeEqualizer(equalContainer);
               timelineIndicator.style.animationPlayState = "paused";
               addPlayIcon(playIconContainer);
-              addGreenPlay(greenButton)
+              addGreenPlay(greenButton);
             }
 
             return (audioSelected = audio);
@@ -420,10 +420,10 @@ fill="#1DB954"
       });
 
       //  function to play pause at main play button
-
+      console.log(mainPlayButton);
       mainPlayButton.addEventListener("click", () => {
         // start fisrt track on-click
-
+        console.log(mainPlayButton);
         if (audioSelected === undefined) {
           let firstAudio = document.querySelector("audio");
           let firstTrackInfo = firstAudio.parentElement.parentElement;
@@ -453,12 +453,12 @@ fill="#1DB954"
             addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
-            addGreenPause(greenButton)
+            addGreenPause(greenButton);
           } else {
             firstAudio.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
-            addGreenPlay(greenButton)
+            addGreenPlay(greenButton);
             removeEqualizer(equalContainer);
           }
 
@@ -469,12 +469,12 @@ fill="#1DB954"
             addEqualizer(equalContainer);
             timelineIndicator.style.animationPlayState = "running";
             addPauseIcon(playIconContainer);
-            addGreenPause(greenButton)
+            addGreenPause(greenButton);
           } else {
             audioSelected.pause();
             timelineIndicator.style.animationPlayState = "paused";
             addPlayIcon(playIconContainer);
-            addGreenPlay(greenButton)
+            addGreenPlay(greenButton);
             removeEqualizer(equalContainer);
           }
         }
@@ -488,12 +488,12 @@ fill="#1DB954"
           addEqualizer(equalContainer);
           timelineIndicator.style.animationPlayState = "running";
           addPauseIcon(playIconContainer);
-          addGreenPause(greenButton)
+          addGreenPause(greenButton);
         } else {
           audioSelected.pause();
           timelineIndicator.style.animationPlayState = "paused";
           addPlayIcon(playIconContainer);
-          addGreenPlay(greenButton)
+          addGreenPlay(greenButton);
           removeEqualizer(equalContainer);
         }
       });
