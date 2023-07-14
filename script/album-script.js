@@ -122,7 +122,7 @@ const addGreenPause = function (element) {
   fill="currentColor"
   class="bi bi-pause bg-success rounded-5 text-black"
   style="background-color: #1db954 !important;"
-  id="pausa"
+  id="play"
   viewBox="0 0 16 16"
 >
   <path
