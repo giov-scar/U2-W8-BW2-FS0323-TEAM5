@@ -3,7 +3,12 @@
   <head class="w-100">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
+    <title>Spotify</title>
+    <link
+      rel="shortcut icon"
+      href="https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png"
+      type="image/x-icon"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,9 +21,9 @@
   </head>
   <body class="bg-black text-light h-100">
     <!-- NAV -->
-    <nav class="navbar navbar-dark bg-dark d-md-none sticky-top z-3">
-      <div class="container-fluid">
-        <div class="mx-4">
+    <div>
+      <nav class="navbar navbar-dark bg-dark sticky-top mb-1 z-3">
+        <div class="container-fluid">
           <a class="navbar-brand text-light" href="index.html"
             ><img
               id="logo"
@@ -26,85 +31,88 @@
               src="assets/imgs/logo.svg"
               alt=""
           /></a>
-          <a href="search.html" class="text-light mx-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-              />
-            </svg>
-          </a>
 
-          <button type="button" class="btn btn-light rounded-5 fw-bold">
-            APRI L'APP
-          </button>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasDarkNavbar"
-          aria-controls="offcanvasDarkNavbar"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="offcanvas offcanvas-end text-bg-dark"
-          tabindex="-1"
-          id="offcanvasDarkNavbar"
-          aria-labelledby="offcanvasDarkNavbarLabel"
-        >
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+          <div class="mx-4 d-flex align-items-center">
+            <a href="search.html" class="text-light mx-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </a>
+
+            <button type="button" class="btn btn-light rounded-pill px-4 me-3">
+              APRI L'APP
+            </button>
+
             <button
+              class="navbar-toggler border border-0"
               type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul
-              class="navbar-nav justify-content-end flex-grow-1 p-3 text-light"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDarkNavbar"
+              aria-controls="offcanvasDarkNavbar"
+              aria-label="Toggle navigation"
             >
-              <li class="nav-item fs-3">
-                <a class="nav-link active" aria-current="page" href="#"
-                  >Accedi</a
+              <span class="navbar-toggler-icon"> </span>
+            </button>
+            <div
+              class="offcanvas offcanvas-end text-bg-dark"
+              tabindex="-1"
+              id="offcanvasDarkNavbar"
+              aria-labelledby="offcanvasDarkNavbarLabel"
+            >
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+                <button
+                  type="button"
+                  class="btn-close btn-close-white"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul
+                  class="navbar-nav justify-content-end flex-grow-1 p-3 text-light"
                 >
-              </li>
-              <li class="nav-item fs-3">
-                <a class="nav-link" href="#">Iscr iviti</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">__</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Assistenza</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Carica</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Scarica</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Privacy</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Condizioni</a>
-              </li>
-            </ul>
+                  <li class="nav-item fs-3">
+                    <a class="nav-link active" aria-current="page" href="#"
+                      >Accedi</a
+                    >
+                  </li>
+                  <li class="nav-item fs-3">
+                    <a class="nav-link" href="#">Iscriviti</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">__</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Assistenza</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Carica</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Scarica</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Privacy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Condizioni</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
     <!-- " ASCOLTATI DI RECENTE"
     <div class="container-fluid">
